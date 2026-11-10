@@ -1,0 +1,110 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hermes.local/sublation/agent-wakeup-receipt-v1.json",
+  "title": "Skill Sublation Agent Wakeup Receipt v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "receipt_id",
+    "project_id",
+    "project_root",
+    "room_identity",
+    "intent_id",
+    "window_id",
+    "policy_revision",
+    "policy_sha256",
+    "claim_id",
+    "nonce",
+    "key_id",
+    "seat_id",
+    "seat_generation",
+    "source_message_id",
+    "idempotency_key",
+    "adapter_id",
+    "adapter_sha256",
+    "status",
+    "sent_at",
+    "verified_at",
+    "delivery_ref",
+    "failure_code",
+    "external_command_accepted",
+    "secrets_stored",
+    "receipt_sha256",
+    "receipt_hmac"
+  ],
+  "properties": {
+    "schema_version": {"const": "skill-sublation.agent-wakeup-receipt.v1"},
+    "receipt_id": {"$ref": "#/$defs/opaque_id"},
+    "project_id": {"$ref": "#/$defs/opaque_id"},
+    "project_root": {"type": "string", "minLength": 1},
+    "room_identity": {"$ref": "#/$defs/sha256"},
+    "intent_id": {"$ref": "#/$defs/opaque_id"},
+    "window_id": {"$ref": "#/$defs/opaque_id"},
+    "policy_revision": {"const": 1},
+    "policy_sha256": {"$ref": "#/$defs/sha256"},
+    "claim_id": {"$ref": "#/$defs/opaque_id"},
+    "nonce": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "key_id": {"$ref": "#/$defs/opaque_id"},
+    "seat_id": {"$ref": "#/$defs/opaque_id"},
+    "seat_generation": {"$ref": "#/$defs/sha256"},
+    "source_message_id": {"$ref": "#/$defs/opaque_id"},
+    "idempotency_key": {"$ref": "#/$defs/sha256"},
+    "adapter_id": {"$ref": "#/$defs/opaque_id"},
+    "adapter_sha256": {"$ref": "#/$defs/sha256"},
+    "status": {"enum": ["sent_and_verified", "failed"]},
+    "sent_at": {"$ref": "#/$defs/timestamp_or_null"},
+    "verified_at": {"$ref": "#/$defs/timestamp_or_null"},
+    "delivery_ref": {
+      "oneOf": [
+        {"type": "string", "minLength": 1, "maxLength": 256, "pattern": "^[^\\n\\r]*$"},
+        {"type": "null"}
+      ]
+    },
+    "failure_code": {
+      "oneOf": [
+        {"type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-z0-9][a-z0-9._:-]*$"},
+        {"type": "null"}
+      ]
+    },
+    "external_command_accepted": {"const": false},
+    "secrets_stored": {"const": false},
+    "receipt_sha256": {"$ref": "#/$defs/sha256"}
+    ,"receipt_hmac": {"type": "string", "pattern": "^hmac-sha256:[a-f0-9]{64}$"}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"status": {"const": "sent_and_verified"}}, "required": ["status"]},
+      "then": {
+        "properties": {
+          "sent_at": {"type": "string", "format": "date-time"},
+          "verified_at": {"type": "string", "format": "date-time"},
+          "delivery_ref": {"type": "string", "minLength": 1, "maxLength": 256},
+          "failure_code": {"type": "null"}
+        }
+      },
+      "else": {
+        "properties": {
+          "sent_at": {"type": "null"},
+          "verified_at": {"type": "null"},
+          "delivery_ref": {"type": "null"},
+          "failure_code": {"type": "string", "minLength": 1, "maxLength": 128}
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "opaque_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._-]{0,127}$"
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$"
+    },
+    "timestamp_or_null": {
+      "type": ["string", "null"],
+      "format": "date-time"
+    }
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hermes.local/sublation/routing-rollback-receipt-v1.json",
+  "title": "Skill Sublation Routing Rollback Receipt v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "candidate_id",
+    "registry_root_id",
+    "registry_path",
+    "index_relative_path",
+    "pre_tree_sha256",
+    "post_shadow_tree_sha256",
+    "post_rollback_tree_sha256",
+    "index_before_sha256",
+    "index_shadow_sha256",
+    "index_after_sha256",
+    "action",
+    "performed_at",
+    "index_sha256",
+    "router_sha256",
+    "profile_set_sha256",
+    "fallback_verified",
+    "registry_rollback_verified",
+    "legacy_catalog_unchanged"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "skill-sublation.routing-rollback-receipt.v1"
+    },
+    "candidate_id": {"type": "string", "minLength": 1},
+    "registry_root_id": {"$ref": "#/$defs/opaque_id"},
+    "registry_path": {"type": "string", "minLength": 1},
+    "index_relative_path": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$)).+$"
+    },
+    "pre_tree_sha256": {"$ref": "#/$defs/sha256"},
+    "post_shadow_tree_sha256": {"$ref": "#/$defs/sha256"},
+    "post_rollback_tree_sha256": {"$ref": "#/$defs/sha256"},
+    "index_before_sha256": {"$ref": "#/$defs/sha256"},
+    "index_shadow_sha256": {"$ref": "#/$defs/sha256"},
+    "index_after_sha256": {"$ref": "#/$defs/sha256"},
+    "action": {"const": "replace_then_restore"},
+    "performed_at": {"type": "string", "format": "date-time"},
+    "index_sha256": {"$ref": "#/$defs/sha256"},
+    "router_sha256": {"$ref": "#/$defs/sha256"},
+    "profile_set_sha256": {"$ref": "#/$defs/sha256"},
+    "fallback_verified": {"const": true},
+    "registry_rollback_verified": {"const": true},
+    "legacy_catalog_unchanged": {"const": true}
+  },
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "opaque_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9._:-]{1,128}$"
+    }
+  }
+}

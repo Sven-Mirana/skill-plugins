@@ -1,0 +1,18 @@
+{
+  "schema_version": "skill-sublation.routing-metadata.v1",
+  "skill": "finance-analysis",
+  "routing_metadata_version": 1,
+  "primary_domain": "finance-investment",
+  "capabilities": ["research", "validation"],
+  "triggers": ["财务测算", "证券估值", "投资分析"],
+  "negative_triggers": ["不做财务分析", "不要估值"],
+  "input_types": ["user_prompt"],
+  "output_types": ["analysis_report"],
+  "dependencies": [],
+  "risk_tier": "medium",
+  "allowed_actions": ["advisory_selection"],
+  "prohibited_actions": ["automatic_execution"],
+  "clarify_when": ["估值口径不明确"],
+  "fallback_mode": "legacy_catalog",
+  "classification": {"method": "human_reviewed", "status": "candidate", "evidence": ["synthetic-fixture"]}
+}

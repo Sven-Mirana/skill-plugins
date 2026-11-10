@@ -1,0 +1,12 @@
+__pycache__/
+*.py[cod]
+*.pyo
+*.orig
+*.rej
+.DS_Store
+.pytest_cache/
+.venv/
+candidates/
+rollback-points/
+validation/tmp/
+release-audit-report.json

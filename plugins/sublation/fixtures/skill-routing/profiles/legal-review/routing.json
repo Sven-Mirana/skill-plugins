@@ -1,0 +1,18 @@
+{
+  "schema_version": "skill-sublation.routing-metadata.v1",
+  "skill": "legal-review",
+  "routing_metadata_version": 1,
+  "primary_domain": "legal",
+  "capabilities": ["research", "review"],
+  "triggers": ["合同审查", "诉讼风险", "法律复核", "裁判义务"],
+  "negative_triggers": ["不要法律分析", "不做法律分析", "无需法律审查", "不做法律判断", "仅做排版", "只做排版"],
+  "input_types": ["user_prompt"],
+  "output_types": ["review_report"],
+  "dependencies": [],
+  "risk_tier": "high",
+  "allowed_actions": ["advisory_selection"],
+  "prohibited_actions": ["automatic_execution"],
+  "clarify_when": ["授权或案件范围不明确"],
+  "fallback_mode": "legacy_catalog",
+  "classification": {"method": "human_reviewed", "status": "candidate", "evidence": ["synthetic-fixture"]}
+}

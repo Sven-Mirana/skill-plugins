@@ -1,0 +1,20 @@
+{
+  "name": "sublation",
+  "displayName": "Sublation 技能扬弃",
+  "version": "5.0.0-claude-code.4",
+  "description": "技能扬弃 Sublation V5.0.0 的 Claude Code 显式入口：仅在用户输入 /sublation:sublation 时启动，按 观测→候选→验证→复核→用户决策→晋升→观察窗 治理 Skill 变更。不含 hook、MCP、后台任务或自动晋升。",
+  "author": {
+    "name": "skill-sublation contributors",
+    "url": "https://github.com/Sven-Mirana/sublation"
+  },
+  "homepage": "https://github.com/Sven-Mirana/sublation",
+  "repository": "https://github.com/Sven-Mirana/sublation",
+  "license": "MIT",
+  "keywords": [
+    "sublation",
+    "skill-governance",
+    "review",
+    "evidence",
+    "zh-CN"
+  ]
+}

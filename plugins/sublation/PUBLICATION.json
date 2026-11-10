@@ -1,0 +1,66 @@
+{
+  "schema_version": "skill-sublation.github-publication-plan.v2",
+  "state": "COMPLETED_READBACK_VERIFIED",
+  "prepared_at": "2026-08-26T07:32:45Z",
+  "repository": "Sven-Mirana/sublation",
+  "visibility": "public",
+  "authority": {
+    "actor": "repository owner",
+    "basis": "explicit GitHub repository update request in the current user session",
+    "request_text_encoding": "UTF-8 raw bytes without a trailing newline",
+    "request_text_sha256": "sha256:b0e5ec898dd37a81c032fe5f9e3422be44397262e6cfb1052f6d13e7339a546e",
+    "scope": "V5 source update, v5.0.0 tag, GitHub Release, and full public ZIP asset"
+  },
+  "baseline": {
+    "branch": "main",
+    "commit": "2dc39601cd30fe3a15d2f0d794b133c33a057eef",
+    "release_tag": "v4.0.0"
+  },
+  "target": {
+    "branch": "main",
+    "release_tag": "v5.0.0",
+    "release_asset": "skill-sublation-v5.0.0-full-mit-20260825.zip",
+    "release_asset_bytes": 498689,
+    "release_asset_sha256": "sha256:1a13d4ff07526873564c9fa21b15ecdfa87eae8e6a240951bc10367e88f8110a"
+  },
+  "source_binding": {
+    "formal_file_count": 158,
+    "formal_logical_tree_sha256": "sha256:8276768668a9f88c182e0046fb9310b4a90b700a87bb21ef04136a0ece9dc9cb",
+    "full_package_file_count": 170,
+    "full_package_tree_sha256": "sha256:d2eb71dc89ad8e53f7c04ae38194114bde61ab56ef3e30e5769e6095c5f26e36",
+    "local_validation_receipt_sha256": "sha256:76731acd2fcf3f7d20ef2fa60bfc71b73ae47ace19e9907e74f344b6b32a959c"
+  },
+  "performed_at_plan_time": {
+    "main_updated": false,
+    "tag_created": false,
+    "release_created": false,
+    "asset_uploaded": false,
+    "remote_readback_verified": false
+  },
+  "postcondition": "Satisfied by REMOTE-PUBLICATION-RECEIPT.json after independent API readback.",
+  "remaining_boundaries": {
+    "skillhub_cn_lite_uploaded_by_this_workflow": false,
+    "automatic_installation": false,
+    "host_integration_enabled": false,
+    "live_routing_enabled": false,
+    "watcher_launchd_or_cron_enabled": false,
+    "observation_window_closed": false,
+    "court_submission": false
+  },
+  "completion": {
+    "verified_at": "2026-08-26T07:51:48Z",
+    "receipt": "REMOTE-PUBLICATION-RECEIPT.json",
+    "main_commit_sha": "70b40a32dd23c0095b0059c0de84c1692c6dfeb7",
+    "tag_object_sha": "bb3e57f8dabeb0af76670240771cb987bed79161",
+    "peeled_commit_sha": "70b40a32dd23c0095b0059c0de84c1692c6dfeb7",
+    "release_id": 376958299,
+    "release_url": "https://github.com/Sven-Mirana/sublation/releases/tag/v5.0.0",
+    "asset_id": 530467869,
+    "asset_digest": "sha256:1a13d4ff07526873564c9fa21b15ecdfa87eae8e6a240951bc10367e88f8110a",
+    "main_updated": true,
+    "tag_created": true,
+    "release_created": true,
+    "asset_uploaded": true,
+    "remote_readback_verified": true
+  }
+}

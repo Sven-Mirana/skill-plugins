@@ -1,0 +1,106 @@
+{
+  "schema_version": "skill-sublation.remote-publication-receipt.v1",
+  "state": "COMPLETED_READBACK_VERIFIED",
+  "verified_at": "2026-08-26T07:51:48Z",
+  "repository": {
+    "full_name": "Sven-Mirana/sublation",
+    "visibility": "public",
+    "default_branch": "main",
+    "description": "Local-first, multi-agent Skill governance, collaboration panel, and shadow routing (v5.0)."
+  },
+  "authority": {
+    "request_text_encoding": "UTF-8 raw bytes without a trailing newline",
+    "request_text_sha256": "sha256:b0e5ec898dd37a81c032fe5f9e3422be44397262e6cfb1052f6d13e7339a546e",
+    "scope": "V5 source update, v5.0.0 tag, GitHub Release, and full public ZIP asset"
+  },
+  "tagged_plan": {
+    "publication_json_sha256": "sha256:5a77161f2732a9414212a6d3b7cc444a86e38e18853445a908cfb9e2e73e827c",
+    "release_notes_sha256": "sha256:55dd48616f3d7392e973a3f8f318a7b0e39dd9ebcaba0cee00607aa84f12ee29",
+    "commit_sha": "70b40a32dd23c0095b0059c0de84c1692c6dfeb7",
+    "tree_sha": "9d6622c36727ea0cfcee49441e6b253b4e5b394f"
+  },
+  "pull_request": {
+    "number": 1,
+    "url": "https://github.com/Sven-Mirana/sublation/pull/1",
+    "base_sha": "2dc39601cd30fe3a15d2f0d794b133c33a057eef",
+    "head_sha": "7abd861f4bb990f80b01b217e24845c8db28a6ce",
+    "merge_commit_sha": "70b40a32dd23c0095b0059c0de84c1692c6dfeb7",
+    "merged_at": "2026-08-26T07:43:07Z",
+    "state": "MERGED"
+  },
+  "checks": {
+    "pull_request": {
+      "run_id": 32943932293,
+      "url": "https://github.com/Sven-Mirana/sublation/actions/runs/32943932293",
+      "head_sha": "7abd861f4bb990f80b01b217e24845c8db28a6ce",
+      "event": "pull_request",
+      "conclusion": "success",
+      "completed_at": "2026-08-26T07:42:27Z"
+    },
+    "main_push": {
+      "run_id": 32944130248,
+      "url": "https://github.com/Sven-Mirana/sublation/actions/runs/32944130248",
+      "head_sha": "70b40a32dd23c0095b0059c0de84c1692c6dfeb7",
+      "event": "push",
+      "conclusion": "success",
+      "completed_at": "2026-08-26T07:45:05Z"
+    }
+  },
+  "tag": {
+    "ref": "refs/tags/v5.0.0",
+    "ref_object_type": "tag",
+    "tag_object_sha": "bb3e57f8dabeb0af76670240771cb987bed79161",
+    "annotated_tag": "v5.0.0",
+    "message": "Skill Sublation v5.0.0",
+    "tagger": {
+      "name": "sven",
+      "email": "279203654+Sven-Mirana@users.noreply.github.com",
+      "date": "2026-08-26T07:47:02Z"
+    },
+    "peeled_object_type": "commit",
+    "peeled_commit_sha": "70b40a32dd23c0095b0059c0de84c1692c6dfeb7"
+  },
+  "release": {
+    "id": 376958299,
+    "url": "https://github.com/Sven-Mirana/sublation/releases/tag/v5.0.0",
+    "tag_name": "v5.0.0",
+    "target_commitish": "main",
+    "name": "Skill Sublation v5.0.0",
+    "draft": false,
+    "prerelease": false,
+    "latest": true,
+    "created_at": "2026-08-26T07:47:02Z",
+    "published_at": "2026-08-26T07:47:30Z"
+  },
+  "asset": {
+    "id": 530467869,
+    "name": "skill-sublation-v5.0.0-full-mit-20260825.zip",
+    "label": "Sublation V5.0 完整 MIT 安装包",
+    "state": "uploaded",
+    "content_type": "application/zip",
+    "size": 498689,
+    "digest": "sha256:1a13d4ff07526873564c9fa21b15ecdfa87eae8e6a240951bc10367e88f8110a",
+    "created_at": "2026-08-26T07:47:22Z",
+    "updated_at": "2026-08-26T07:47:23Z",
+    "download_url": "https://github.com/Sven-Mirana/sublation/releases/download/v5.0.0/skill-sublation-v5.0.0-full-mit-20260825.zip"
+  },
+  "local_transaction_receipt": {
+    "state": "READBACK_VERIFIED",
+    "sha256": "sha256:28e603651c617d03b805ffdc7736a0283c81ce665dc3ec75b576747af4b5ed64"
+  },
+  "source_binding": {
+    "formal_file_count": 158,
+    "formal_logical_tree_sha256": "sha256:8276768668a9f88c182e0046fb9310b4a90b700a87bb21ef04136a0ece9dc9cb",
+    "full_package_file_count": 170,
+    "full_package_tree_sha256": "sha256:d2eb71dc89ad8e53f7c04ae38194114bde61ab56ef3e30e5769e6095c5f26e36"
+  },
+  "remaining_boundaries": {
+    "skillhub_cn_lite_uploaded_by_this_workflow": false,
+    "automatic_installation": false,
+    "host_integration_enabled": false,
+    "live_routing_enabled": false,
+    "watcher_launchd_or_cron_enabled": false,
+    "observation_window_closed": false,
+    "court_submission": false
+  }
+}

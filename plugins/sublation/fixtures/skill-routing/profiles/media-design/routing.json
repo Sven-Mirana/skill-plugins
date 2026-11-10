@@ -1,0 +1,18 @@
+{
+  "schema_version": "skill-sublation.routing-metadata.v1",
+  "skill": "media-design",
+  "routing_metadata_version": 1,
+  "primary_domain": "media-design",
+  "capabilities": ["visualization", "transformation"],
+  "triggers": ["图片设计", "视觉图表", "媒体制作"],
+  "negative_triggers": ["不要图片设计", "仅写文章"],
+  "input_types": ["user_prompt"],
+  "output_types": ["design_asset"],
+  "dependencies": [],
+  "risk_tier": "medium",
+  "allowed_actions": ["advisory_selection"],
+  "prohibited_actions": ["automatic_execution"],
+  "clarify_when": ["输出尺寸不明确"],
+  "fallback_mode": "legacy_catalog",
+  "classification": {"method": "human_reviewed", "status": "candidate", "evidence": ["synthetic-fixture"]}
+}

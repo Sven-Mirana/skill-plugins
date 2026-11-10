@@ -1,0 +1,12 @@
+{
+  "schema_version": "skill-sublation.host-shadow-config.v1",
+  "enabled": false,
+  "mode": "host_shadow",
+  "advisory_only": true,
+  "preserve_host_selection": true,
+  "allow_automatic_execution": false,
+  "allow_live_routing": false,
+  "input_policy": "redacted_closed_vocabulary_or_frozen_synthetic_fixture_only",
+  "net_token_savings_status": "not_measurable",
+  "host_deferred_loading_verified": false
+}

@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hermes.local/sublation/routing-index-v1.json",
+  "title": "Skill Sublation Derived Routing Index v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "mode",
+    "taxonomy_sha256",
+    "router_sha256",
+    "profile_set_sha256",
+    "previous_index_sha256",
+    "entries",
+    "content_sha256"
+  ],
+  "properties": {
+    "schema_version": {"const": "skill-sublation.routing-index.v1"},
+    "mode": {"enum": ["shadow", "live"]},
+    "taxonomy_sha256": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "router_sha256": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "profile_set_sha256": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "previous_index_sha256": {
+      "type": ["string", "null"],
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "entries": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "runtime_id",
+          "root_id",
+          "relative_path",
+          "declared_name",
+          "skill_tree_hash",
+          "tree_hash_algorithm",
+          "metadata_sha256",
+          "metadata"
+        ],
+        "properties": {
+          "runtime_id": {"type": "string", "minLength": 1},
+          "root_id": {"type": "string", "minLength": 1},
+          "relative_path": {"type": "string", "minLength": 1},
+          "declared_name": {"type": "string", "minLength": 1},
+          "skill_tree_hash": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+          "tree_hash_algorithm": {"const": "sublation-canonical-tree-v1"},
+          "metadata_sha256": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+          "metadata": {"type": "object"}
+        }
+      }
+    },
+    "content_sha256": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}
+  }
+}

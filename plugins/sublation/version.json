@@ -1,0 +1,23 @@
+{
+  "schema_version": "skill-sublation.version.v1",
+  "version": "5.0.0",
+  "release_channel": "governed-local",
+  "lifecycle_state_source": "candidate-manifest-or-install-receipt",
+  "capabilities": [
+    "governed-skill-sublation",
+    "dynamic-multi-agent-collaboration-panel",
+    "controlled-agent-wakeup-intent",
+    "skill-metadata-classification",
+    "advisory-shadow-routing"
+  ],
+  "prohibited_claims": [
+    "automatic-skill-invocation",
+    "live-routing-enabled",
+    "live-agent-wakeup-enabled",
+    "host-adapter-installed",
+    "launchd-or-cron-enabled",
+    "agent-reply-proven-by-intent-or-claim",
+    "all-installed-skills-classified",
+    "seat-change-grants-authority"
+  ]
+}

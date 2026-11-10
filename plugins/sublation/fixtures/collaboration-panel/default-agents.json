@@ -1,0 +1,20 @@
+{
+  "schema_version": "skill-sublation.collaboration-panel-default-agents.v1",
+  "agents": [
+    {
+      "id": "codex",
+      "display_name": "Codex",
+      "role_label": "实现与复核"
+    },
+    {
+      "id": "hermes",
+      "display_name": "Hermes",
+      "role_label": "编排与观察"
+    },
+    {
+      "id": "claude-code",
+      "display_name": "Claude Code",
+      "role_label": "独立复核"
+    }
+  ]
+}

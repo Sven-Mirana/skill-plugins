@@ -1,0 +1,91 @@
+{
+  "release": "skill-bundle-2026.11.10",
+  "visibility": "private",
+  "packages": [
+    {
+      "name": "Sublation",
+      "version": "5.0.0-claude-code.4",
+      "license": "MIT",
+      "upstream": "Sven-Mirana/sublation",
+      "asset": "sublation-5.0.0-claude-code.4-9f340ce-github-source.zip",
+      "sha256": "7c79d7de92ea9828c25db1ab228941125973306b9c15d3f9795233b8358d6f97",
+      "bytes": 578049,
+      "files": 196,
+      "variant": "核查 ZIP 原件",
+      "changes": [],
+      "original_sha256": "7c79d7de92ea9828c25db1ab228941125973306b9c15d3f9795233b8358d6f97"
+    },
+    {
+      "name": "皋陶",
+      "version": "1.0.0-rc.16",
+      "license": "GPL-3.0-only，另有第三方组件",
+      "upstream": "Sven-Mirana/gaotao-lawyer-casework-zh",
+      "asset": "gaotao-native-github-full-1.0.0-rc.16.zip",
+      "sha256": "bca4f418a2787c7e628aaaeefa942e07e5c6c3327ee970f684c937fdf88a1ca0",
+      "bytes": 89580934,
+      "files": 447,
+      "variant": "核查 ZIP 原件",
+      "changes": [],
+      "original_sha256": "bca4f418a2787c7e628aaaeefa942e07e5c6c3327ee970f684c937fdf88a1ca0"
+    },
+    {
+      "name": "买卖合同纠纷",
+      "version": "1.0.0-rc.13",
+      "license": "GPL-3.0-only，业务实体另有来源记录",
+      "upstream": "Sven-Mirana/sales-contract-litigation-zh",
+      "asset": "sales-contract-native-github-full-1.0.0-rc.13.zip",
+      "sha256": "d7b9f44065ac6e5ec6ba626510ff98ef833a7f7c0c493bc839c2ab86a45cf220",
+      "bytes": 89669421,
+      "files": 473,
+      "variant": "核查 ZIP 原件",
+      "changes": [],
+      "original_sha256": "d7b9f44065ac6e5ec6ba626510ff98ef833a7f7c0c493bc839c2ab86a45cf220"
+    },
+    {
+      "name": "追偿权纠纷",
+      "version": "portable-r5",
+      "license": "GPL-3.0-only",
+      "upstream": "Sven-Mirana/recovery-right-litigation-zh",
+      "asset": "recovery-right-portable-r5-private-review.zip",
+      "sha256": "3e74b78573d165c835429e5461467feca297b14237feaac0b92602a96568700d",
+      "bytes": 1034947,
+      "files": 85,
+      "variant": "运行包审阅副本",
+      "changes": [
+        "取内层 recovery-right 运行包，省去外层试跑封装与四个本机候选治理附件",
+        "三份溯源元数据清除本机绝对路径，重建包根 SHA-256 清单，payload 原样"
+      ],
+      "original_sha256": "0a02db7f0c8f60c8acb5e09626e228d23e4d33097ccd0e268e7e84a916387eea"
+    },
+    {
+      "name": "融资租赁普通直租纠纷",
+      "version": "1.0.0-rc.10/b21",
+      "license": "GPL-3.0-only，业务实体另有来源记录",
+      "upstream": "Sven-Mirana/financial-lease-direct-litigation-zh",
+      "asset": "financial-lease-direct-native-1.0.0-rc.10-b21-private-review.zip",
+      "sha256": "6200f837c378c2ae4a0276beaf3a30dcdcd0a71c350a8d2783f5fd6f80df4dd4",
+      "bytes": 89723781,
+      "files": 478,
+      "variant": "完整包审阅副本",
+      "changes": [
+        "两份业务来源元数据清除本机路径，重建相关 SHA-256 清单及发布元数据校验引用，业务代码原样"
+      ],
+      "original_sha256": "dc50fde65bf69e0377aad8e31f915df238a910ae2e21325db2e05a8a0f323f2b"
+    },
+    {
+      "name": "诉讼可视化",
+      "version": "1.0.0-rc.2",
+      "license": "GPL-3.0-only，保留历史 MIT 通知",
+      "upstream": "Sven-Mirana/litigation-visualization-zh",
+      "asset": "litigation-visualization-native-1.0.0-rc.2-tree-private-review.zip",
+      "sha256": "340ab4dde07ad45c09af0c0619963ffa5172e47ccf743e9d322a337c60ad4f94",
+      "bytes": 250507,
+      "files": 55,
+      "variant": "55 个文件的原生源码树",
+      "changes": [
+        "保留原源码包 tree/ 的文件内容，省去外层本机取证、构建脚本与测试记录"
+      ],
+      "original_sha256": "275c44270ba92fd7102e1b8f212a85593da60f5f187ab53a1b5f840a1ac7278d"
+    }
+  ]
+}

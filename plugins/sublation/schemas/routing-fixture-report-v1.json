@@ -1,0 +1,197 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hermes.local/sublation/routing-fixture-report-v1.json",
+  "title": "Skill Sublation Redacted Routing Fixture Report v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "fixture_id",
+    "sample_source",
+    "authorization_evidence",
+    "index_sha256",
+    "case_id_set_sha256",
+    "fixture_plan_sha256",
+    "result_projection_sha256",
+    "total",
+    "passed",
+    "failed",
+    "pass_rate",
+    "raw_prompt_leaks",
+    "metrics",
+    "results"
+  ],
+  "properties": {
+    "schema_version": {"const": "skill-sublation.routing-fixture-report.v1"},
+    "fixture_id": {"$ref": "#/$defs/opaque_id"},
+    "sample_source": {
+      "enum": ["synthetic_fixture", "authorized_shadow_runtime"]
+    },
+    "authorization_evidence": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/opaque_id"}
+    },
+    "index_sha256": {"$ref": "#/$defs/sha256"},
+    "case_id_set_sha256": {"$ref": "#/$defs/sha256"},
+    "fixture_plan_sha256": {"$ref": "#/$defs/sha256"},
+    "result_projection_sha256": {"$ref": "#/$defs/sha256"},
+    "total": {"$ref": "#/$defs/nonnegative_integer"},
+    "passed": {"$ref": "#/$defs/nonnegative_integer"},
+    "failed": {"$ref": "#/$defs/nonnegative_integer"},
+    "pass_rate": {"$ref": "#/$defs/rate"},
+    "raw_prompt_leaks": {"$ref": "#/$defs/nonnegative_integer"},
+    "metrics": {"$ref": "#/$defs/metrics"},
+    "results": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/result"}
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "sample_source": {"const": "authorized_shadow_runtime"}
+        },
+        "required": ["sample_source"]
+      },
+      "then": {
+        "properties": {"authorization_evidence": {"minItems": 1}}
+      }
+    }
+  ],
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "opaque_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9._:-]{1,128}$"
+    },
+    "bounded_string": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256,
+      "pattern": "^[^\\r\\n]*$"
+    },
+    "nonnegative_integer": {"type": "integer", "minimum": 0},
+    "rate": {"type": "number", "minimum": 0, "maximum": 1},
+    "case_type": {
+      "enum": [
+        "general",
+        "single_domain",
+        "multi_domain",
+        "explicit",
+        "fallback",
+        "negative_control",
+        "high_risk",
+        "tree_drift"
+      ]
+    },
+    "decision": {
+      "enum": ["recommend", "clarify", "compose_or_clarify", "fallback"]
+    },
+    "failure_code": {
+      "enum": [
+        "decision_mismatch",
+        "top_mismatch",
+        "missing_expected",
+        "forbidden_present",
+        "raw_prompt_leak",
+        "safety_gate_mismatch",
+        "authority_expansion",
+        "nondeterministic_result"
+      ]
+    },
+    "metrics": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "explicit_invocation_adherence",
+        "deterministic_order_rate",
+        "fallback_success_rate",
+        "negative_control_misroutes",
+        "high_risk_misroutes",
+        "authority_expansion_events",
+        "raw_prompt_leaks",
+        "tree_drift_misses",
+        "valid_samples",
+        "single_domain_top1",
+        "multi_domain_top3",
+        "route_accuracy",
+        "baseline_route_accuracy",
+        "manual_correction_rate",
+        "baseline_manual_correction_rate",
+        "p95_router_latency_ms",
+        "net_token_savings_status",
+        "host_deferred_loading_verified",
+        "fallback_verified",
+        "registry_rollback_verified"
+      ],
+      "properties": {
+        "explicit_invocation_adherence": {"$ref": "#/$defs/rate"},
+        "deterministic_order_rate": {"$ref": "#/$defs/rate"},
+        "fallback_success_rate": {"$ref": "#/$defs/rate"},
+        "negative_control_misroutes": {"$ref": "#/$defs/nonnegative_integer"},
+        "high_risk_misroutes": {"$ref": "#/$defs/nonnegative_integer"},
+        "authority_expansion_events": {"$ref": "#/$defs/nonnegative_integer"},
+        "raw_prompt_leaks": {"$ref": "#/$defs/nonnegative_integer"},
+        "tree_drift_misses": {"$ref": "#/$defs/nonnegative_integer"},
+        "valid_samples": {"$ref": "#/$defs/nonnegative_integer"},
+        "single_domain_top1": {"$ref": "#/$defs/rate"},
+        "multi_domain_top3": {"$ref": "#/$defs/rate"},
+        "route_accuracy": {"$ref": "#/$defs/rate"},
+        "baseline_route_accuracy": {"$ref": "#/$defs/rate"},
+        "manual_correction_rate": {"$ref": "#/$defs/rate"},
+        "baseline_manual_correction_rate": {"$ref": "#/$defs/rate"},
+        "p95_router_latency_ms": {"type": "number", "minimum": 0},
+        "net_token_savings_status": {"enum": ["positive", "not_measurable"]},
+        "host_deferred_loading_verified": {"type": "boolean"},
+        "fallback_verified": {"type": "boolean"},
+        "registry_rollback_verified": {"type": "boolean"}
+      }
+    },
+    "result": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "case_id",
+        "case_type",
+        "passed",
+        "failure_codes",
+        "decision",
+        "recommended_runtime_ids",
+        "safety_gate_required",
+        "fallback_used",
+        "clarification_required",
+        "reason_codes",
+        "runtime_binding_verified",
+        "deterministic_replay_verified"
+      ],
+      "properties": {
+        "case_id": {"$ref": "#/$defs/opaque_id"},
+        "case_type": {"$ref": "#/$defs/case_type"},
+        "passed": {"type": "boolean"},
+        "failure_codes": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {"$ref": "#/$defs/failure_code"}
+        },
+        "decision": {"$ref": "#/$defs/decision"},
+        "recommended_runtime_ids": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/bounded_string"}
+        },
+        "safety_gate_required": {"type": "boolean"},
+        "fallback_used": {"type": "boolean"},
+        "clarification_required": {"type": "boolean"},
+        "reason_codes": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/opaque_id"}
+        },
+        "runtime_binding_verified": {"type": ["boolean", "null"]},
+        "deterministic_replay_verified": {"type": "boolean"}
+      }
+    }
+  }
+}

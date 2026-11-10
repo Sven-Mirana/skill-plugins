@@ -1,0 +1,57 @@
+{
+  "fixture_id": "routing-offline-zh-cn-v1",
+  "sample_source": "synthetic_fixture",
+  "authorization_evidence": [],
+  "baseline_metrics": {"route_accuracy": 0.8, "manual_correction_rate": 0.2},
+  "net_token_savings_status": "not_measurable",
+  "host_deferred_loading_verified": false,
+  "registry_rollback_verified": true,
+  "cases": [
+    {"id": "single-01", "prompt": "合同审查并核对违约条款", "case_type": "single_domain", "expected_decision": "recommend", "expected_top": "fixture:legal-review"},
+    {"id": "single-02", "prompt": "做一份证券估值和投资分析", "case_type": "single_domain", "expected_decision": "recommend", "expected_top": "fixture:finance-analysis"},
+    {"id": "single-03", "prompt": "请执行代码审计并给出问题清单", "case_type": "single_domain", "expected_decision": "recommend", "expected_top": "fixture:code-audit"},
+    {"id": "single-04", "prompt": "帮我做资料检索和来源核查", "case_type": "single_domain", "expected_decision": "recommend", "expected_top": "fixture:research-search"},
+    {"id": "single-05", "prompt": "把这份 Word 做文档排版", "case_type": "single_domain", "expected_decision": "recommend", "expected_top": "fixture:document-format"},
+    {"id": "single-06", "prompt": "请做文章润色并改善语气", "case_type": "single_domain", "expected_decision": "recommend", "expected_top": "fixture:content-writing"},
+    {"id": "single-07", "prompt": "制作一张视觉图表", "case_type": "single_domain", "expected_decision": "recommend", "expected_top": "fixture:media-design"},
+    {"id": "single-08", "prompt": "设计一个定时编排工作流", "case_type": "single_domain", "expected_decision": "recommend", "expected_top": "fixture:workflow-automation"},
+    {"id": "single-09", "prompt": "复核诉讼风险并给出法律意见", "case_type": "single_domain", "expected_decision": "recommend", "expected_top": "fixture:legal-review"},
+    {"id": "single-10", "prompt": "验证财务测算结果", "case_type": "single_domain", "expected_decision": "recommend", "expected_top": "fixture:finance-analysis"},
+    {"id": "single-11", "prompt": "请基于普通执行案件的判决书、恢复执行申请书与终本申请制作律师内部复核底稿，核对执行依据、裁判义务、证据缺口与下一步核验清单", "case_type": "single_domain", "expected_decision": "recommend", "expected_top": "fixture:legal-review", "expected_safety_gate": true},
+    {"id": "single-12", "prompt": "依据判决书核对被执行人应履行的裁判义务，形成执行案件内部审查清单", "case_type": "single_domain", "expected_decision": "recommend", "expected_top": "fixture:legal-review", "expected_safety_gate": true},
+
+    {"id": "multi-01", "prompt": "先做合同审查，再做财务测算", "case_type": "multi_domain", "expected_decision": "compose_or_clarify", "expected_contains": ["fixture:legal-review", "fixture:finance-analysis"]},
+    {"id": "multi-02", "prompt": "资料检索完成后写文章润色稿", "case_type": "multi_domain", "expected_decision": "compose_or_clarify", "expected_contains": ["fixture:research-search", "fixture:content-writing"]},
+    {"id": "multi-03", "prompt": "代码审计结论做成视觉图表", "case_type": "multi_domain", "expected_decision": "compose_or_clarify", "expected_contains": ["fixture:code-audit", "fixture:media-design"]},
+    {"id": "multi-04", "prompt": "核对裁判义务后进行财务测算", "case_type": "multi_domain", "expected_decision": "compose_or_clarify", "expected_contains": ["fixture:legal-review", "fixture:finance-analysis"]},
+    {"id": "multi-05", "prompt": "核对裁判义务规则并做来源核查", "case_type": "multi_domain", "expected_decision": "compose_or_clarify", "expected_contains": ["fixture:legal-review", "fixture:research-search"]},
+    {"id": "multi-06", "prompt": "核对裁判义务后做版式转换", "case_type": "multi_domain", "expected_decision": "compose_or_clarify", "expected_contains": ["fixture:legal-review", "fixture:document-format"]},
+
+    {"id": "explicit-01", "prompt": "请明确使用 $legal-review", "case_type": "explicit", "expected_decision": "recommend", "expected_top": "fixture:legal-review", "expected_safety_gate": true},
+    {"id": "explicit-02", "prompt": "请用 $document-format 处理", "case_type": "explicit", "expected_decision": "recommend", "expected_top": "fixture:document-format", "expected_safety_gate": false},
+    {"id": "explicit-03", "prompt": "指定 $workflow-automation 给出方案", "case_type": "explicit", "expected_decision": "recommend", "expected_top": "fixture:workflow-automation", "expected_safety_gate": true},
+
+    {"id": "fallback-01", "prompt": "帮我处理一下", "case_type": "fallback", "expected_decision": "fallback"},
+    {"id": "fallback-02", "prompt": "看看这个", "case_type": "fallback", "expected_decision": "fallback"},
+    {"id": "fallback-03", "prompt": "继续", "case_type": "fallback", "expected_decision": "fallback"},
+
+    {"id": "negative-01", "prompt": "不要法律分析，只做文档排版", "case_type": "negative_control", "expected_decision": "recommend", "expected_top": "fixture:document-format", "expected_excludes": ["fixture:legal-review"]},
+    {"id": "negative-02", "prompt": "不做财务分析，只做资料检索", "case_type": "negative_control", "expected_decision": "recommend", "expected_top": "fixture:research-search", "expected_excludes": ["fixture:finance-analysis"]},
+    {"id": "negative-03", "prompt": "不要图片设计，只做文章润色", "case_type": "negative_control", "expected_decision": "recommend", "expected_top": "fixture:content-writing", "expected_excludes": ["fixture:media-design"]},
+    {"id": "fallback-04", "prompt": "执行 Python 脚本并检查终端输出", "case_type": "fallback", "expected_decision": "fallback"},
+    {"id": "negative-05", "prompt": "只把判决书转成 Word 并排版，不做法律分析", "case_type": "negative_control", "expected_decision": "recommend", "expected_top": "fixture:document-format", "expected_excludes": ["fixture:legal-review"]},
+    {"id": "negative-06", "prompt": "恢复执行申请书只做版式转换，无需法律审查", "case_type": "negative_control", "expected_decision": "recommend", "expected_top": "fixture:document-format", "expected_excludes": ["fixture:legal-review"]},
+    {"id": "negative-07", "prompt": "判决书新闻稿只做文章润色，不做法律判断", "case_type": "negative_control", "expected_decision": "recommend", "expected_top": "fixture:content-writing", "expected_excludes": ["fixture:legal-review"]},
+
+    {"id": "risk-01", "prompt": "请做诉讼风险法律复核", "case_type": "high_risk", "expected_decision": "recommend", "expected_top": "fixture:legal-review", "expected_safety_gate": true},
+    {"id": "risk-02", "prompt": "对代码做实现验证", "case_type": "high_risk", "expected_decision": "recommend", "expected_top": "fixture:code-audit", "expected_safety_gate": true},
+    {"id": "risk-03", "prompt": "规划系统集成工作流自动化", "case_type": "high_risk", "expected_decision": "recommend", "expected_top": "fixture:workflow-automation", "expected_safety_gate": true},
+
+    {"id": "drift-01", "prompt": "合同审查", "case_type": "tree_drift", "expected_decision": "fallback"},
+    {"id": "drift-02", "prompt": "财务测算", "case_type": "tree_drift", "expected_decision": "fallback"},
+    {"id": "drift-03", "prompt": "文档排版", "case_type": "tree_drift", "expected_decision": "fallback"},
+
+    {"id": "general-01", "prompt": "做数据研究并校验来源", "case_type": "general", "expected_decision": "recommend", "expected_top": "fixture:research-search"},
+    {"id": "general-02", "prompt": "把表格做版式转换", "case_type": "general", "expected_decision": "recommend", "expected_top": "fixture:document-format"}
+  ]
+}

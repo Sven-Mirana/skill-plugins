@@ -1,0 +1,97 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hermes.local/sublation/collaboration-roster-v1.json",
+  "title": "Skill Sublation Multi-Agent Collaboration Roster v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "project_id",
+    "revision",
+    "max_agent_seats",
+    "history_mode",
+    "seat_changes_grant_authority",
+    "updated_at",
+    "updated_by",
+    "seats"
+  ],
+  "properties": {
+    "schema_version": {"const": "skill-sublation.collaboration-roster.v1"},
+    "project_id": {"$ref": "#/$defs/opaque_id"},
+    "revision": {"type": "integer", "minimum": 1},
+    "max_agent_seats": {"type": "integer", "minimum": 1, "maximum": 32},
+    "history_mode": {"const": "append_only"},
+    "seat_changes_grant_authority": {"const": false},
+    "updated_at": {"type": "string", "format": "date-time"},
+    "updated_by": {"const": "user"},
+    "seats": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 33,
+      "items": {"$ref": "#/$defs/seat"}
+    }
+  },
+  "$defs": {
+    "opaque_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._-]{0,63}$"
+    },
+    "timestamp_or_null": {
+      "type": ["string", "null"],
+      "format": "date-time"
+    },
+    "seat": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "kind",
+        "display_name",
+        "role_label",
+        "active",
+        "visible",
+        "receives_broadcast",
+        "can_own_tasks",
+        "participation_mode",
+        "adapter_id",
+        "joined_at",
+        "retired_at"
+      ],
+      "properties": {
+        "id": {"$ref": "#/$defs/opaque_id"},
+        "kind": {"enum": ["user", "agent", "observer"]},
+        "display_name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 64,
+          "pattern": "^[^\\n\\r]*$"
+        },
+        "role_label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 64,
+          "pattern": "^[^\\n\\r]*$"
+        },
+        "active": {"type": "boolean"},
+        "visible": {"type": "boolean"},
+        "receives_broadcast": {"type": "boolean"},
+        "can_own_tasks": {"type": "boolean"},
+        "participation_mode": {
+          "enum": ["local_user", "queue_only", "task_polled", "callable", "observer"]
+        },
+        "adapter_id": {
+          "enum": [
+            "local-user",
+            "codex-task-poll",
+            "hermes-local",
+            "claude-code-local",
+            "generic-queue",
+            "none"
+          ]
+        },
+        "joined_at": {"type": "string", "format": "date-time"},
+        "retired_at": {"$ref": "#/$defs/timestamp_or_null"}
+      }
+    }
+  }
+}

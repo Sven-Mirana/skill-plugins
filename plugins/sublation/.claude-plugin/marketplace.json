@@ -1,0 +1,22 @@
+{
+  "name": "sublation",
+  "description": "Sublation（技能扬弃）单插件 marketplace：用户显式触发的 Skill 治理入口，随包复用 MIT V5.0.0 方法、参考与 Python CLI。",
+  "owner": {
+    "name": "Sven-Mirana",
+    "url": "https://github.com/Sven-Mirana"
+  },
+  "plugins": [
+    {
+      "name": "sublation",
+      "source": "./",
+      "description": "技能扬弃 Sublation V5.0.0 的 Claude Code 显式入口（/sublation:sublation）。默认只读、只建议；不含 hook、MCP、后台任务、自动晋升或 live routing。",
+      "category": "governance",
+      "tags": [
+        "sublation",
+        "skill-governance",
+        "review",
+        "evidence"
+      ]
+    }
+  ]
+}

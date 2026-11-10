@@ -1,0 +1,18 @@
+{
+  "schema_version": "skill-sublation.routing-metadata.v1",
+  "skill": "workflow-automation",
+  "routing_metadata_version": 1,
+  "primary_domain": "automation-integration",
+  "capabilities": ["automation", "orchestration"],
+  "triggers": ["工作流自动化", "定时编排", "系统集成"],
+  "negative_triggers": ["不要自动化", "只给说明"],
+  "input_types": ["user_prompt"],
+  "output_types": ["workflow_plan"],
+  "dependencies": [],
+  "risk_tier": "high",
+  "allowed_actions": ["advisory_selection"],
+  "prohibited_actions": ["automatic_execution"],
+  "clarify_when": ["执行权限不明确"],
+  "fallback_mode": "legacy_catalog",
+  "classification": {"method": "human_reviewed", "status": "candidate", "evidence": ["synthetic-fixture"]}
+}

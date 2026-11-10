@@ -1,0 +1,18 @@
+{
+  "schema_version": "skill-sublation.routing-metadata.v1",
+  "skill": "code-audit",
+  "routing_metadata_version": 1,
+  "primary_domain": "software-engineering",
+  "capabilities": ["coding", "review", "testing"],
+  "triggers": ["代码审计", "回归测试", "实现验证"],
+  "negative_triggers": ["不要代码", "仅写文案"],
+  "input_types": ["user_prompt"],
+  "output_types": ["audit_report"],
+  "dependencies": [],
+  "risk_tier": "high",
+  "allowed_actions": ["advisory_selection"],
+  "prohibited_actions": ["automatic_execution"],
+  "clarify_when": ["代码仓库范围不明确"],
+  "fallback_mode": "legacy_catalog",
+  "classification": {"method": "human_reviewed", "status": "candidate", "evidence": ["synthetic-fixture"]}
+}

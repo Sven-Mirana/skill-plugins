@@ -1,0 +1,18 @@
+{
+  "schema_version": "skill-sublation.routing-metadata.v1",
+  "skill": "research-search",
+  "routing_metadata_version": 1,
+  "primary_domain": "data-research",
+  "capabilities": ["research", "validation"],
+  "triggers": ["资料检索", "数据研究", "来源核查"],
+  "negative_triggers": ["不要检索", "不做研究"],
+  "input_types": ["user_prompt"],
+  "output_types": ["research_report"],
+  "dependencies": [],
+  "risk_tier": "medium",
+  "allowed_actions": ["advisory_selection"],
+  "prohibited_actions": ["automatic_execution"],
+  "clarify_when": ["检索范围不明确"],
+  "fallback_mode": "legacy_catalog",
+  "classification": {"method": "human_reviewed", "status": "candidate", "evidence": ["synthetic-fixture"]}
+}

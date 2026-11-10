@@ -1,0 +1,441 @@
+{
+  "schema_version": "skill-sublation.routing-index.v1",
+  "mode": "shadow",
+  "taxonomy_sha256": "sha256:5e0e973ebdb0e2217276fadcccc5d1e9658621fe5fdbdceb5c3ab087b5b60faa",
+  "router_sha256": "sha256:91b82c765ed1641d19801d508b5708bf9f78ac7c9cefb298f7ddb799864f3dbc",
+  "profile_set_sha256": "sha256:4962b50ada810d51e43fbd916e1974e25e51cfac2344f30361323359dac33106",
+  "previous_index_sha256": null,
+  "entries": [
+    {
+      "runtime_id": "fixture:code-audit",
+      "root_id": "fixture",
+      "relative_path": "code-audit",
+      "declared_name": "code-audit",
+      "skill_tree_hash": "sha256:b14cb8199f60bd44e6fadaa693b247b19999dbe7cffbb00dcb1a5a948d4941ee",
+      "tree_hash_algorithm": "sublation-canonical-tree-v1",
+      "metadata_sha256": "sha256:abd5bbb5e1e2c21f52aaf4d4fde69d699433851d22f76482dbd9223669561dd5",
+      "metadata": {
+        "schema_version": "skill-sublation.routing-metadata.v1",
+        "skill": "code-audit",
+        "routing_metadata_version": 1,
+        "primary_domain": "software-engineering",
+        "capabilities": [
+          "coding",
+          "review",
+          "testing"
+        ],
+        "triggers": [
+          "代码审计",
+          "回归测试",
+          "实现验证"
+        ],
+        "negative_triggers": [
+          "不要代码",
+          "仅写文案"
+        ],
+        "input_types": [
+          "user_prompt"
+        ],
+        "output_types": [
+          "audit_report"
+        ],
+        "dependencies": [],
+        "risk_tier": "high",
+        "allowed_actions": [
+          "advisory_selection"
+        ],
+        "prohibited_actions": [
+          "automatic_execution"
+        ],
+        "clarify_when": [
+          "代码仓库范围不明确"
+        ],
+        "fallback_mode": "legacy_catalog",
+        "classification": {
+          "method": "human_reviewed",
+          "status": "candidate",
+          "evidence": [
+            "synthetic-fixture"
+          ]
+        }
+      }
+    },
+    {
+      "runtime_id": "fixture:content-writing",
+      "root_id": "fixture",
+      "relative_path": "content-writing",
+      "declared_name": "content-writing",
+      "skill_tree_hash": "sha256:51628bba86d4bd12f61c25d3c862241d41fb2dc503e66ee581e39e0231c63d55",
+      "tree_hash_algorithm": "sublation-canonical-tree-v1",
+      "metadata_sha256": "sha256:32fe09e99b49216337f61afa53d156cb7e18fe1ae6ac8b3701700aebd005ca40",
+      "metadata": {
+        "schema_version": "skill-sublation.routing-metadata.v1",
+        "skill": "content-writing",
+        "routing_metadata_version": 1,
+        "primary_domain": "writing-content",
+        "capabilities": [
+          "drafting",
+          "review"
+        ],
+        "triggers": [
+          "文章润色",
+          "内容写作",
+          "文案起草"
+        ],
+        "negative_triggers": [
+          "不要写作",
+          "仅做图片设计"
+        ],
+        "input_types": [
+          "user_prompt"
+        ],
+        "output_types": [
+          "draft_text"
+        ],
+        "dependencies": [],
+        "risk_tier": "low",
+        "allowed_actions": [
+          "advisory_selection"
+        ],
+        "prohibited_actions": [
+          "automatic_execution"
+        ],
+        "clarify_when": [
+          "写作受众不明确"
+        ],
+        "fallback_mode": "legacy_catalog",
+        "classification": {
+          "method": "human_reviewed",
+          "status": "candidate",
+          "evidence": [
+            "synthetic-fixture"
+          ]
+        }
+      }
+    },
+    {
+      "runtime_id": "fixture:document-format",
+      "root_id": "fixture",
+      "relative_path": "document-format",
+      "declared_name": "document-format",
+      "skill_tree_hash": "sha256:8f45d4771f4163330780739fad82dd135a57c447d15dcd13dd208ec81c1e65ec",
+      "tree_hash_algorithm": "sublation-canonical-tree-v1",
+      "metadata_sha256": "sha256:00acd746089d5bfcec4a00be39f6c62cba587cb349ba5ce3e19abe39fe09d818",
+      "metadata": {
+        "schema_version": "skill-sublation.routing-metadata.v1",
+        "skill": "document-format",
+        "routing_metadata_version": 1,
+        "primary_domain": "office-documents",
+        "capabilities": [
+          "formatting",
+          "transformation"
+        ],
+        "triggers": [
+          "文档排版",
+          "表格格式",
+          "版式转换"
+        ],
+        "negative_triggers": [
+          "不要排版",
+          "只做法律分析"
+        ],
+        "input_types": [
+          "user_prompt"
+        ],
+        "output_types": [
+          "formatted_document"
+        ],
+        "dependencies": [],
+        "risk_tier": "low",
+        "allowed_actions": [
+          "advisory_selection"
+        ],
+        "prohibited_actions": [
+          "automatic_execution"
+        ],
+        "clarify_when": [
+          "目标格式不明确"
+        ],
+        "fallback_mode": "legacy_catalog",
+        "classification": {
+          "method": "human_reviewed",
+          "status": "candidate",
+          "evidence": [
+            "synthetic-fixture"
+          ]
+        }
+      }
+    },
+    {
+      "runtime_id": "fixture:finance-analysis",
+      "root_id": "fixture",
+      "relative_path": "finance-analysis",
+      "declared_name": "finance-analysis",
+      "skill_tree_hash": "sha256:b640a43d4d13187ec823ea798ebc81a2b39fd946222081c2f3a895001a273c20",
+      "tree_hash_algorithm": "sublation-canonical-tree-v1",
+      "metadata_sha256": "sha256:80e1ed5b1102111edd5278425f914cf50151748c23990c5c2e9dc0816133446e",
+      "metadata": {
+        "schema_version": "skill-sublation.routing-metadata.v1",
+        "skill": "finance-analysis",
+        "routing_metadata_version": 1,
+        "primary_domain": "finance-investment",
+        "capabilities": [
+          "research",
+          "validation"
+        ],
+        "triggers": [
+          "财务测算",
+          "证券估值",
+          "投资分析"
+        ],
+        "negative_triggers": [
+          "不做财务分析",
+          "不要估值"
+        ],
+        "input_types": [
+          "user_prompt"
+        ],
+        "output_types": [
+          "analysis_report"
+        ],
+        "dependencies": [],
+        "risk_tier": "medium",
+        "allowed_actions": [
+          "advisory_selection"
+        ],
+        "prohibited_actions": [
+          "automatic_execution"
+        ],
+        "clarify_when": [
+          "估值口径不明确"
+        ],
+        "fallback_mode": "legacy_catalog",
+        "classification": {
+          "method": "human_reviewed",
+          "status": "candidate",
+          "evidence": [
+            "synthetic-fixture"
+          ]
+        }
+      }
+    },
+    {
+      "runtime_id": "fixture:legal-review",
+      "root_id": "fixture",
+      "relative_path": "legal-review",
+      "declared_name": "legal-review",
+      "skill_tree_hash": "sha256:2069e8053e5dbbfe400ab4b325695a3c25b939e956d078d59988906f3bfb4650",
+      "tree_hash_algorithm": "sublation-canonical-tree-v1",
+      "metadata_sha256": "sha256:55fb0e75e97a1c27464b062d23127c8ae64f81f051182588378ae0aa5a689a5e",
+      "metadata": {
+        "schema_version": "skill-sublation.routing-metadata.v1",
+        "skill": "legal-review",
+        "routing_metadata_version": 1,
+        "primary_domain": "legal",
+        "capabilities": [
+          "research",
+          "review"
+        ],
+        "triggers": [
+          "合同审查",
+          "诉讼风险",
+          "法律复核",
+          "裁判义务"
+        ],
+        "negative_triggers": [
+          "不要法律分析",
+          "不做法律分析",
+          "无需法律审查",
+          "不做法律判断",
+          "仅做排版",
+          "只做排版"
+        ],
+        "input_types": [
+          "user_prompt"
+        ],
+        "output_types": [
+          "review_report"
+        ],
+        "dependencies": [],
+        "risk_tier": "high",
+        "allowed_actions": [
+          "advisory_selection"
+        ],
+        "prohibited_actions": [
+          "automatic_execution"
+        ],
+        "clarify_when": [
+          "授权或案件范围不明确"
+        ],
+        "fallback_mode": "legacy_catalog",
+        "classification": {
+          "method": "human_reviewed",
+          "status": "candidate",
+          "evidence": [
+            "synthetic-fixture"
+          ]
+        }
+      }
+    },
+    {
+      "runtime_id": "fixture:media-design",
+      "root_id": "fixture",
+      "relative_path": "media-design",
+      "declared_name": "media-design",
+      "skill_tree_hash": "sha256:1c69fb3107c43babd9553bc59ce7d1221ede298c74ea172270e4a7de97f669a4",
+      "tree_hash_algorithm": "sublation-canonical-tree-v1",
+      "metadata_sha256": "sha256:5952ba82d22dac7b2732d304361f2188fb14c93875062c8e35964800b8b27697",
+      "metadata": {
+        "schema_version": "skill-sublation.routing-metadata.v1",
+        "skill": "media-design",
+        "routing_metadata_version": 1,
+        "primary_domain": "media-design",
+        "capabilities": [
+          "visualization",
+          "transformation"
+        ],
+        "triggers": [
+          "图片设计",
+          "视觉图表",
+          "媒体制作"
+        ],
+        "negative_triggers": [
+          "不要图片设计",
+          "仅写文章"
+        ],
+        "input_types": [
+          "user_prompt"
+        ],
+        "output_types": [
+          "design_asset"
+        ],
+        "dependencies": [],
+        "risk_tier": "medium",
+        "allowed_actions": [
+          "advisory_selection"
+        ],
+        "prohibited_actions": [
+          "automatic_execution"
+        ],
+        "clarify_when": [
+          "输出尺寸不明确"
+        ],
+        "fallback_mode": "legacy_catalog",
+        "classification": {
+          "method": "human_reviewed",
+          "status": "candidate",
+          "evidence": [
+            "synthetic-fixture"
+          ]
+        }
+      }
+    },
+    {
+      "runtime_id": "fixture:research-search",
+      "root_id": "fixture",
+      "relative_path": "research-search",
+      "declared_name": "research-search",
+      "skill_tree_hash": "sha256:4c2d1d0a4eef4842fac57eee0269ededdd925f20e60ea4a61908ae5766be2f20",
+      "tree_hash_algorithm": "sublation-canonical-tree-v1",
+      "metadata_sha256": "sha256:f144e314f912a8cbdae5bfa6518696814f87d6c3c8ca741cb65fcc25c78ec2b1",
+      "metadata": {
+        "schema_version": "skill-sublation.routing-metadata.v1",
+        "skill": "research-search",
+        "routing_metadata_version": 1,
+        "primary_domain": "data-research",
+        "capabilities": [
+          "research",
+          "validation"
+        ],
+        "triggers": [
+          "资料检索",
+          "数据研究",
+          "来源核查"
+        ],
+        "negative_triggers": [
+          "不要检索",
+          "不做研究"
+        ],
+        "input_types": [
+          "user_prompt"
+        ],
+        "output_types": [
+          "research_report"
+        ],
+        "dependencies": [],
+        "risk_tier": "medium",
+        "allowed_actions": [
+          "advisory_selection"
+        ],
+        "prohibited_actions": [
+          "automatic_execution"
+        ],
+        "clarify_when": [
+          "检索范围不明确"
+        ],
+        "fallback_mode": "legacy_catalog",
+        "classification": {
+          "method": "human_reviewed",
+          "status": "candidate",
+          "evidence": [
+            "synthetic-fixture"
+          ]
+        }
+      }
+    },
+    {
+      "runtime_id": "fixture:workflow-automation",
+      "root_id": "fixture",
+      "relative_path": "workflow-automation",
+      "declared_name": "workflow-automation",
+      "skill_tree_hash": "sha256:b30d1e9b06b0370bd1e831fae38ab8f9208fd8fa6b650cc6aa3ee9cbe4f81833",
+      "tree_hash_algorithm": "sublation-canonical-tree-v1",
+      "metadata_sha256": "sha256:4976e0a6fd2376e1f31ccf3ca6ce92261fdd9c2a382ecc4cbd6e91328958c164",
+      "metadata": {
+        "schema_version": "skill-sublation.routing-metadata.v1",
+        "skill": "workflow-automation",
+        "routing_metadata_version": 1,
+        "primary_domain": "automation-integration",
+        "capabilities": [
+          "automation",
+          "orchestration"
+        ],
+        "triggers": [
+          "工作流自动化",
+          "定时编排",
+          "系统集成"
+        ],
+        "negative_triggers": [
+          "不要自动化",
+          "只给说明"
+        ],
+        "input_types": [
+          "user_prompt"
+        ],
+        "output_types": [
+          "workflow_plan"
+        ],
+        "dependencies": [],
+        "risk_tier": "high",
+        "allowed_actions": [
+          "advisory_selection"
+        ],
+        "prohibited_actions": [
+          "automatic_execution"
+        ],
+        "clarify_when": [
+          "执行权限不明确"
+        ],
+        "fallback_mode": "legacy_catalog",
+        "classification": {
+          "method": "human_reviewed",
+          "status": "candidate",
+          "evidence": [
+            "synthetic-fixture"
+          ]
+        }
+      }
+    }
+  ],
+  "content_sha256": "sha256:a079c7113ba946738066b1c19fc48ffc5e2f5ea9a9dd4188a1bde2ebc524c671"
+}

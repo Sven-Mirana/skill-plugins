@@ -1,0 +1,50 @@
+{
+  "schema_version": "skill-sublation.public-test-receipt.v2",
+  "package_version": "5.0.0",
+  "recorded_at": "2026-08-26T07:32:45Z",
+  "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=scripts python3 -B -m unittest discover -s scripts -p 'test_*.py'",
+  "environment": {
+    "platform": "macOS 26.5.2 arm64 local runtime",
+    "python": "3.12.10",
+    "test_dependency": "jsonschema 4.26.0",
+    "isolation": "sandbox-exec"
+  },
+  "result": {
+    "status": "PASS",
+    "tests_run": 271,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0
+  },
+  "deterministic_routing_index": {
+    "entries": 8,
+    "sha256": "sha256:f04cd7d454d91ebf4438895b464f58a0f8c6a0c0a2692c0fffd6c3aa0ac1d5bc",
+    "regeneration_byte_identical": true
+  },
+  "source_binding": {
+    "formal_files": 158,
+    "formal_logical_tree_sha256": "sha256:8276768668a9f88c182e0046fb9310b4a90b700a87bb21ef04136a0ece9dc9cb",
+    "full_archive_files": 170,
+    "full_archive_bytes": 498689,
+    "full_archive_sha256": "sha256:1a13d4ff07526873564c9fa21b15ecdfa87eae8e6a240951bc10367e88f8110a",
+    "full_fresh_tree_sha256": "sha256:d2eb71dc89ad8e53f7c04ae38194114bde61ab56ef3e30e5769e6095c5f26e36",
+    "package_checksum_entries_verified": 169,
+    "independent_builds_byte_identical": true
+  },
+  "privacy": {
+    "credential_hits": 0,
+    "private_identifier_hits": 0,
+    "case_data_files": 0,
+    "actual_room_message_files": 0,
+    "cache_or_symlink_files": 0
+  },
+  "claim_boundary": {
+    "mechanical_test_pass_only": true,
+    "provider_or_paid_service_used": false,
+    "installation_performed_by_test": false,
+    "case_material_read": false,
+    "host_adapter_or_live_routing_enabled": false,
+    "watcher_launchd_or_cron_changed": false,
+    "publication_performed_at_receipt_time": false
+  }
+}

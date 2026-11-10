@@ -1,0 +1,101 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hermes.local/sublation/routing-observation-v1.json",
+  "title": "Skill Sublation Redacted Routing Observation v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "ts",
+    "request_id",
+    "evaluation_cohort",
+    "prompt_fingerprint",
+    "deterministic_replay_verified",
+    "mode",
+    "index_sha256",
+    "router_sha256",
+    "profile_set_sha256",
+    "decision",
+    "recommended_runtime_ids",
+    "fallback_used",
+    "clarification_required",
+    "safety_gate_required",
+    "reason_codes",
+    "latency_ms",
+    "baseline_skill",
+    "authority_granted",
+    "raw_prompt_stored",
+    "runtime_binding_verified",
+    "previous_event_sha256",
+    "event_sha256",
+    "hmac_sha256"
+  ],
+  "properties": {
+    "schema_version": {"const": "skill-sublation.routing-observation.v1"},
+    "ts": {"type": "string", "format": "date-time"},
+    "request_id": {"$ref": "#/$defs/opaque_id"},
+    "evaluation_cohort": {"$ref": "#/$defs/case_type"},
+    "prompt_fingerprint": {"$ref": "#/$defs/sha256"},
+    "deterministic_replay_verified": {"type": "boolean"},
+    "mode": {"const": "shadow"},
+    "index_sha256": {"$ref": "#/$defs/sha256"},
+    "router_sha256": {"$ref": "#/$defs/sha256"},
+    "profile_set_sha256": {"$ref": "#/$defs/sha256"},
+    "decision": {"$ref": "#/$defs/decision"},
+    "recommended_runtime_ids": {"$ref": "#/$defs/bounded_string_array"},
+    "fallback_used": {"type": "boolean"},
+    "clarification_required": {"type": "boolean"},
+    "safety_gate_required": {"type": "boolean"},
+    "reason_codes": {"$ref": "#/$defs/bounded_string_array"},
+    "latency_ms": {"type": "number", "minimum": 0},
+    "baseline_skill": {
+      "type": ["string", "null"],
+      "pattern": "^[a-z0-9][a-z0-9._-]*$"
+    },
+    "authority_granted": {"const": false},
+    "raw_prompt_stored": {"const": false},
+    "runtime_binding_verified": {"type": ["boolean", "null"]},
+    "previous_event_sha256": {
+      "anyOf": [
+        {"$ref": "#/$defs/sha256"},
+        {"type": "null"}
+      ]
+    },
+    "event_sha256": {"$ref": "#/$defs/sha256"},
+    "hmac_sha256": {"$ref": "#/$defs/sha256"}
+  },
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "opaque_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9._:-]{1,128}$"
+    },
+    "case_type": {
+      "enum": [
+        "general",
+        "single_domain",
+        "multi_domain",
+        "explicit",
+        "fallback",
+        "negative_control",
+        "high_risk",
+        "tree_drift"
+      ]
+    },
+    "decision": {
+      "enum": ["recommend", "clarify", "compose_or_clarify", "fallback"]
+    },
+    "bounded_string_array": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 256,
+        "pattern": "^[^\\n]*$"
+      }
+    }
+  }
+}

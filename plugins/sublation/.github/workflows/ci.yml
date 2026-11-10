@@ -1,0 +1,71 @@
+name: macos-v5-tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  regression:
+    runs-on: macos-15
+    timeout-minutes: 12
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: requirements-test.txt
+
+      - name: Install test dependency
+        run: python -m pip install -r requirements-test.txt
+
+      - name: Verify macOS isolation
+        run: test -x /usr/bin/sandbox-exec
+
+      - name: Verify package and repository checksums
+        run: |
+          shasum -a 256 --check SHA256SUMS.txt
+          shasum -a 256 --check GITHUB-SHA256SUMS.txt
+
+      - name: Verify public-release boundary
+        run: |
+          python -B scripts/release_audit.py \
+            --root . \
+            --report "$RUNNER_TEMP/release-audit.json"
+
+      - name: Verify deterministic routing index
+        run: |
+          PYTHONDONTWRITEBYTECODE=1 python -B scripts/skill_router.py index \
+            --skills-root "fixture=$PWD/fixtures/skill-routing/profiles" \
+            --mode shadow \
+            --output "$RUNNER_TEMP/skill-routing-index.json"
+          cmp validation/skill-routing-index.json \
+              "$RUNNER_TEMP/skill-routing-index.json"
+
+      - name: Run 271 regression tests
+        env:
+          PYTHONDONTWRITEBYTECODE: "1"
+          PYTHONPATH: scripts
+        run: |
+          set -o pipefail
+          python -B -m unittest discover -s scripts -p 'test_*.py' 2>&1 \
+            | tee "$RUNNER_TEMP/v5-tests.log"
+          grep -F "Ran 271 tests" "$RUNNER_TEMP/v5-tests.log"
+          grep -Fx "OK" "$RUNNER_TEMP/v5-tests.log"
+
+      - name: Verify clean file hygiene
+        run: |
+          test -z "$(find . -path ./.git -prune -o -type l -print)"
+          test -z "$(find . -path ./.git -prune -o -type f \
+            \( -name '*.pyc' -o -name '*.pyo' \) -print)"
+          test -z "$(find . -path ./.git -prune -o -type d \
+            -name '__pycache__' -print)"

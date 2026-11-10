@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hermes.local/sublation/routing-observation-verification-v1.json",
+  "title": "Skill Sublation Routing Observation Verification v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "status",
+    "log_sha256",
+    "event_count",
+    "first_event_sha256",
+    "last_event_sha256",
+    "chain_verified",
+    "hmac_verified",
+    "privacy_flags_verified",
+    "unique_request_ids_verified",
+    "runtime_binding_true_count",
+    "runtime_binding_false_count",
+    "runtime_binding_null_count",
+    "deterministic_replay_true_count",
+    "deterministic_replay_false_count",
+    "index_sha256",
+    "router_sha256",
+    "profile_set_sha256",
+    "attestation_key_id",
+    "attestation_key_sha256",
+    "request_id_set_sha256",
+    "result_projection_sha256",
+    "plan_projection_sha256",
+    "p95_latency_ms",
+    "first_ts",
+    "last_ts"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "skill-sublation.routing-observation-verification.v1"
+    },
+    "status": {"const": "passed"},
+    "log_sha256": {"$ref": "#/$defs/sha256"},
+    "event_count": {"type": "integer", "minimum": 1},
+    "first_event_sha256": {"$ref": "#/$defs/sha256"},
+    "last_event_sha256": {"$ref": "#/$defs/sha256"},
+    "chain_verified": {"const": true},
+    "hmac_verified": {"const": true},
+    "privacy_flags_verified": {"const": true},
+    "unique_request_ids_verified": {"const": true},
+    "runtime_binding_true_count": {"$ref": "#/$defs/count"},
+    "runtime_binding_false_count": {"$ref": "#/$defs/count"},
+    "runtime_binding_null_count": {"$ref": "#/$defs/count"},
+    "deterministic_replay_true_count": {"$ref": "#/$defs/count"},
+    "deterministic_replay_false_count": {"$ref": "#/$defs/count"},
+    "index_sha256": {"$ref": "#/$defs/sha256"},
+    "router_sha256": {"$ref": "#/$defs/sha256"},
+    "profile_set_sha256": {"$ref": "#/$defs/sha256"},
+    "attestation_key_id": {"$ref": "#/$defs/opaque_id"},
+    "attestation_key_sha256": {"$ref": "#/$defs/sha256"},
+    "request_id_set_sha256": {"$ref": "#/$defs/sha256"},
+    "result_projection_sha256": {"$ref": "#/$defs/sha256"},
+    "plan_projection_sha256": {"$ref": "#/$defs/sha256"},
+    "p95_latency_ms": {"type": "number", "minimum": 0},
+    "first_ts": {"type": "string", "format": "date-time"},
+    "last_ts": {"type": "string", "format": "date-time"}
+  },
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "opaque_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9._:-]{1,128}$"
+    },
+    "count": {"type": "integer", "minimum": 0}
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "schema_version": "skill-sublation.scenario-routing-migration.v1",
+  "source_schema": "skill-sublation.scenario-taxonomy.v1",
+  "target_schema": "skill-sublation.routing-metadata.v1",
+  "mappings": {
+    "governance": {"primary_domain": "meta-governance", "capabilities": ["governance", "validation"]},
+    "legal_research": {"primary_domain": "legal", "capabilities": ["research", "review"]},
+    "litigation_workbench": {"primary_domain": "legal", "capabilities": ["drafting", "review"]},
+    "document_processing": {"primary_domain": "office-documents", "capabilities": ["extraction", "formatting", "transformation"]},
+    "article_writing": {"primary_domain": "writing-content", "capabilities": ["drafting", "review"]},
+    "wechat_publishing": {"primary_domain": "writing-content", "capabilities": ["formatting", "publishing"]},
+    "market_daily": {"primary_domain": "finance-investment", "capabilities": ["monitoring", "research"]},
+    "media_generation": {"primary_domain": "media-design", "capabilities": ["drafting", "visualization"]},
+    "software_delivery": {"primary_domain": "software-engineering", "capabilities": ["coding", "testing", "validation"]},
+    "general_research": {"primary_domain": "data-research", "capabilities": ["research"]}
+  },
+  "rule": "This mapping is a migration suggestion only. It never changes a formal Skill without candidate review and promotion."
+}

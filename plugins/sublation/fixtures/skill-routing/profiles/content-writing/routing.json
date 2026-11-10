@@ -1,0 +1,18 @@
+{
+  "schema_version": "skill-sublation.routing-metadata.v1",
+  "skill": "content-writing",
+  "routing_metadata_version": 1,
+  "primary_domain": "writing-content",
+  "capabilities": ["drafting", "review"],
+  "triggers": ["文章润色", "内容写作", "文案起草"],
+  "negative_triggers": ["不要写作", "仅做图片设计"],
+  "input_types": ["user_prompt"],
+  "output_types": ["draft_text"],
+  "dependencies": [],
+  "risk_tier": "low",
+  "allowed_actions": ["advisory_selection"],
+  "prohibited_actions": ["automatic_execution"],
+  "clarify_when": ["写作受众不明确"],
+  "fallback_mode": "legacy_catalog",
+  "classification": {"method": "human_reviewed", "status": "candidate", "evidence": ["synthetic-fixture"]}
+}

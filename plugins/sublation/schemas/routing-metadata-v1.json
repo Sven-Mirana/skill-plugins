@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hermes.local/sublation/routing-metadata-v1.json",
+  "title": "Skill Sublation Routing Metadata v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "skill",
+    "routing_metadata_version",
+    "primary_domain",
+    "capabilities",
+    "triggers",
+    "negative_triggers",
+    "input_types",
+    "output_types",
+    "dependencies",
+    "risk_tier",
+    "allowed_actions",
+    "prohibited_actions",
+    "clarify_when",
+    "fallback_mode",
+    "classification"
+  ],
+  "properties": {
+    "schema_version": {"const": "skill-sublation.routing-metadata.v1"},
+    "skill": {"type": "string", "pattern": "^[a-z0-9][a-z0-9._-]*$"},
+    "routing_metadata_version": {"type": "integer", "minimum": 1},
+    "primary_domain": {"type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$"},
+    "capabilities": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {"type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$"}
+    },
+    "triggers": {"$ref": "#/$defs/string_set"},
+    "negative_triggers": {"$ref": "#/$defs/string_set"},
+    "input_types": {"$ref": "#/$defs/nonempty_string_set"},
+    "output_types": {"$ref": "#/$defs/nonempty_string_set"},
+    "dependencies": {"$ref": "#/$defs/string_set"},
+    "risk_tier": {"enum": ["low", "medium", "high"]},
+    "allowed_actions": {"$ref": "#/$defs/nonempty_string_set"},
+    "prohibited_actions": {"$ref": "#/$defs/nonempty_string_set"},
+    "clarify_when": {"$ref": "#/$defs/string_set"},
+    "fallback_mode": {"const": "legacy_catalog"},
+    "classification": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["method", "status", "evidence"],
+      "properties": {
+        "method": {"enum": ["deterministic_suggestion", "human_reviewed", "imported_reviewed"]},
+        "status": {"enum": ["suggested", "candidate", "approved", "rejected"]},
+        "evidence": {"$ref": "#/$defs/nonempty_string_set"}
+      }
+    }
+  },
+  "$defs": {
+    "string_set": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 1}
+    },
+    "nonempty_string_set": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 1}
+    }
+  }
+}

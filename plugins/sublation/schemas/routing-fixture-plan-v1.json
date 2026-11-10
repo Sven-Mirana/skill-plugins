@@ -1,0 +1,171 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hermes.local/sublation/routing-fixture-plan-v1.json",
+  "title": "Skill Sublation Redacted Routing Fixture Plan v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "fixture_id",
+    "sample_source",
+    "index_sha256",
+    "prompt_fingerprint_type",
+    "cases",
+    "content_sha256"
+  ],
+  "properties": {
+    "schema_version": {"const": "skill-sublation.routing-fixture-plan.v1"},
+    "fixture_id": {"$ref": "#/$defs/opaque_id"},
+    "sample_source": {
+      "enum": ["synthetic_fixture", "authorized_shadow_runtime"]
+    },
+    "index_sha256": {"$ref": "#/$defs/sha256"},
+    "prompt_fingerprint_type": {
+      "enum": ["sha256-synthetic-only", "hmac-sha256"]
+    },
+    "cases": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/$defs/case"}
+    },
+    "content_sha256": {"$ref": "#/$defs/sha256"}
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "sample_source": {"const": "authorized_shadow_runtime"}
+        },
+        "required": ["sample_source"]
+      },
+      "then": {
+        "properties": {
+          "prompt_fingerprint_type": {"const": "hmac-sha256"}
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "opaque_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9._:-]{1,128}$"
+    },
+    "runtime_id": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 512,
+      "pattern": "^[^\\r\\n\\t:]+:[^\\r\\n\\t]+$"
+    },
+    "runtime_id_set": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/runtime_id"}
+    },
+    "case_type": {
+      "enum": [
+        "general",
+        "single_domain",
+        "multi_domain",
+        "explicit",
+        "fallback",
+        "negative_control",
+        "high_risk",
+        "tree_drift"
+      ]
+    },
+    "decision_or_null": {
+      "enum": [null, "recommend", "clarify", "compose_or_clarify", "fallback"]
+    },
+    "case": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "case_id",
+        "prompt_fingerprint",
+        "case_type",
+        "expected_decision",
+        "expected_top",
+        "expected_contains",
+        "expected_excludes",
+        "expected_safety_gate"
+      ],
+      "properties": {
+        "case_id": {"$ref": "#/$defs/opaque_id"},
+        "prompt_fingerprint": {"$ref": "#/$defs/sha256"},
+        "case_type": {"$ref": "#/$defs/case_type"},
+        "expected_decision": {"$ref": "#/$defs/decision_or_null"},
+        "expected_top": {
+          "anyOf": [
+            {"$ref": "#/$defs/runtime_id"},
+            {"type": "null"}
+          ]
+        },
+        "expected_contains": {"$ref": "#/$defs/runtime_id_set"},
+        "expected_excludes": {"$ref": "#/$defs/runtime_id_set"},
+        "expected_safety_gate": {"type": ["boolean", "null"]}
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "case_type": {
+                "enum": ["single_domain", "explicit", "high_risk"]
+              }
+            },
+            "required": ["case_type"]
+          },
+          "then": {
+            "properties": {
+              "expected_top": {"$ref": "#/$defs/runtime_id"}
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {"case_type": {"const": "multi_domain"}},
+            "required": ["case_type"]
+          },
+          "then": {
+            "properties": {"expected_contains": {"minItems": 2}}
+          }
+        },
+        {
+          "if": {
+            "properties": {"case_type": {"const": "negative_control"}},
+            "required": ["case_type"]
+          },
+          "then": {
+            "properties": {
+              "expected_top": {"$ref": "#/$defs/runtime_id"},
+              "expected_excludes": {"minItems": 1}
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "case_type": {"enum": ["fallback", "tree_drift"]}
+            },
+            "required": ["case_type"]
+          },
+          "then": {
+            "properties": {"expected_decision": {"const": "fallback"}}
+          }
+        },
+        {
+          "if": {
+            "properties": {"case_type": {"const": "high_risk"}},
+            "required": ["case_type"]
+          },
+          "then": {
+            "properties": {"expected_safety_gate": {"const": true}}
+          }
+        }
+      ]
+    }
+  }
+}

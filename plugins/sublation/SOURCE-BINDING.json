@@ -1,0 +1,23 @@
+{
+  "excluded_source_data": [
+    "candidate manifests and patches",
+    "authorization, promotion, rollback, observation-window, and room receipts",
+    "messages, case materials, credentials, and runtime state",
+    "cache files and symbolic links"
+  ],
+  "license": "MIT",
+  "release_date": "2026-08-25",
+  "release_version": "5.0.0",
+  "schema_version": "skill-sublation.public-source-binding.v1",
+  "source_identity": {
+    "description": "promoted Sublation V5.0 final-05 formal payload",
+    "file_count": 158,
+    "logical_tree_sha256": "sha256:8276768668a9f88c182e0046fb9310b4a90b700a87bb21ef04136a0ece9dc9cb"
+  },
+  "transformation_profile": "full-public",
+  "transformations": [
+    "strip filesystem extended attributes and normalize package modes",
+    "replace local account names, absolute user paths, real collaboration identifiers, and private LAN addresses",
+    "add MIT release metadata without changing installed formal roots"
+  ]
+}

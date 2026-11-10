@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hermes.local/sublation/collaboration-routing-snapshot-v1.json",
+  "title": "Skill Sublation Collaboration Routing Snapshot v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "request_id",
+    "metadata_classification",
+    "advisory_recommendation",
+    "host_selection",
+    "actual_invocation",
+    "raw_prompt_stored",
+    "authority_granted_by_router"
+  ],
+  "properties": {
+    "schema_version": {"const": "skill-sublation.collaboration-routing-snapshot.v1"},
+    "request_id": {"$ref": "#/$defs/opaque_id"},
+    "metadata_classification": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["domain", "capabilities", "status"],
+      "properties": {
+        "domain": {
+          "type": ["string", "null"],
+          "pattern": "^[a-z0-9][a-z0-9._-]*$"
+        },
+        "capabilities": {"$ref": "#/$defs/canonical_id_array"},
+        "status": {"enum": ["unavailable", "suggested", "candidate", "approved"]}
+      }
+    },
+    "advisory_recommendation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["mode", "decision", "skills", "safety_gate_required"],
+      "properties": {
+        "mode": {"const": "shadow"},
+        "decision": {
+          "enum": ["disabled", "recommend", "clarify", "compose_or_clarify", "fallback"]
+        },
+        "skills": {"$ref": "#/$defs/canonical_id_array"},
+        "safety_gate_required": {"type": "boolean"}
+      }
+    },
+    "host_selection": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["seat_id", "baseline", "effective", "preserved"],
+      "properties": {
+        "seat_id": {"$ref": "#/$defs/canonical_id"},
+        "baseline": {"$ref": "#/$defs/canonical_id_array"},
+        "effective": {"$ref": "#/$defs/canonical_id_array"},
+        "preserved": {"const": true}
+      }
+    },
+    "actual_invocation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "receipt_sha256"],
+      "properties": {
+        "status": {"enum": ["not_performed", "started", "completed", "failed", "cancelled"]},
+        "receipt_sha256": {
+          "anyOf": [{"$ref": "#/$defs/sha256"}, {"type": "null"}]
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {"status": {"const": "not_performed"}},
+            "required": ["status"]
+          },
+          "then": {"properties": {"receipt_sha256": {"type": "null"}}},
+          "else": {"properties": {"receipt_sha256": {"$ref": "#/$defs/sha256"}}}
+        }
+      ]
+    },
+    "raw_prompt_stored": {"const": false},
+    "authority_granted_by_router": {"const": false}
+  },
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "opaque_id": {"type": "string", "pattern": "^[A-Za-z0-9._:-]{1,128}$"},
+    "canonical_id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9._:-]{0,127}$"},
+    "canonical_id_array": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/canonical_id"}
+    }
+  }
+}

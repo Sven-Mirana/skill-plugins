@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hermes.local/sublation/routing-authorization-receipt-v1.json",
+  "title": "Skill Sublation Routing Shadow Authorization Receipt v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "adapter_id",
+    "channel",
+    "event_id",
+    "sender_id",
+    "in_reply_to",
+    "message",
+    "received_at",
+    "source_event_hash",
+    "report_version",
+    "report_hash",
+    "report_body_hash",
+    "scope_revision",
+    "approval_code",
+    "purpose",
+    "decision",
+    "candidate_id",
+    "candidate_tree_hash",
+    "promotion_event_hash",
+    "index_sha256",
+    "fixture_plan_sha256",
+    "case_id_set_sha256",
+    "attestation_key_id",
+    "attestation_key_sha256",
+    "mode",
+    "attestation_mac"
+  ],
+  "properties": {
+    "schema_version": {"const": 1},
+    "adapter_id": {"type": "string", "minLength": 1},
+    "channel": {"type": "string", "minLength": 1},
+    "event_id": {"$ref": "#/$defs/opaque_id"},
+    "sender_id": {"type": "string", "minLength": 1},
+    "in_reply_to": {"type": "string", "minLength": 1},
+    "message": {"type": "string", "minLength": 1},
+    "received_at": {"type": "string", "format": "date-time"},
+    "source_event_hash": {"$ref": "#/$defs/sha256"},
+    "report_version": {"type": "string", "minLength": 1},
+    "report_hash": {"$ref": "#/$defs/sha256"},
+    "report_body_hash": {"$ref": "#/$defs/sha256"},
+    "scope_revision": {"type": "string", "minLength": 1},
+    "approval_code": {"type": "string", "minLength": 1},
+    "purpose": {"const": "routing_shadow_observation"},
+    "decision": {"const": "approve"},
+    "candidate_id": {"type": "string", "minLength": 1},
+    "candidate_tree_hash": {"$ref": "#/$defs/sha256"},
+    "promotion_event_hash": {"$ref": "#/$defs/sha256"},
+    "index_sha256": {"$ref": "#/$defs/sha256"},
+    "fixture_plan_sha256": {"$ref": "#/$defs/sha256"},
+    "case_id_set_sha256": {"$ref": "#/$defs/sha256"},
+    "attestation_key_id": {"$ref": "#/$defs/opaque_id"},
+    "attestation_key_sha256": {"$ref": "#/$defs/sha256"},
+    "mode": {"const": "shadow"},
+    "attestation_mac": {
+      "type": "string",
+      "pattern": "^hmac-sha256:[0-9a-f]{64}$"
+    }
+  },
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "opaque_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9._:-]{1,128}$"
+    }
+  }
+}

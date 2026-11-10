@@ -1,0 +1,18 @@
+{
+  "schema_version": "skill-sublation.routing-metadata.v1",
+  "skill": "document-format",
+  "routing_metadata_version": 1,
+  "primary_domain": "office-documents",
+  "capabilities": ["formatting", "transformation"],
+  "triggers": ["文档排版", "表格格式", "版式转换"],
+  "negative_triggers": ["不要排版", "只做法律分析"],
+  "input_types": ["user_prompt"],
+  "output_types": ["formatted_document"],
+  "dependencies": [],
+  "risk_tier": "low",
+  "allowed_actions": ["advisory_selection"],
+  "prohibited_actions": ["automatic_execution"],
+  "clarify_when": ["目标格式不明确"],
+  "fallback_mode": "legacy_catalog",
+  "classification": {"method": "human_reviewed", "status": "candidate", "evidence": ["synthetic-fixture"]}
+}

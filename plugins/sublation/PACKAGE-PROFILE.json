@@ -1,0 +1,21 @@
+{
+  "capability_level": "full-v5",
+  "does_not_enable": [
+    "host adapter",
+    "live routing",
+    "automatic skill execution",
+    "watcher, launchd, or cron",
+    "external upload"
+  ],
+  "includes": [
+    "multi-agent collaboration panel",
+    "default-off controlled wakeup intent and receipt contracts",
+    "skill taxonomy and advisory-only shadow routing",
+    "schemas, synthetic fixtures, and full regression tests"
+  ],
+  "language": "zh-CN",
+  "license": "MIT",
+  "profile": "full-public",
+  "schema_version": "skill-sublation.package-profile.v1",
+  "version": "5.0.0"
+}

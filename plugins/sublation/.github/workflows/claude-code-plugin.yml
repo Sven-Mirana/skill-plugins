@@ -1,0 +1,34 @@
+name: claude-code-plugin-contract
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  contract:
+    runs-on: macos-15
+    timeout-minutes: 5
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+
+      - name: Verify plugin file checksums
+        run: shasum -a 256 --check CLAUDE-CODE-PLUGIN-SHA256SUMS.txt
+
+      - name: Run plugin contract tests
+        env:
+          PYTHONDONTWRITEBYTECODE: "1"
+        run: |
+          python -B -m unittest discover \
+            -s tests/claude_code_plugin -p 'test_*.py' -v

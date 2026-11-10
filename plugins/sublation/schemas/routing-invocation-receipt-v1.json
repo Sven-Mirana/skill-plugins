@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hermes.local/sublation/routing-invocation-receipt-v1.json",
+  "title": "Skill Sublation Host Skill Invocation Receipt v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "request_id",
+    "host_id",
+    "executing_agent_id",
+    "routing_mode",
+    "recommended_skill_id",
+    "host_selected_skill_id",
+    "invoked_skill_id",
+    "invocation_status",
+    "started_at",
+    "finished_at",
+    "host_adapter_sha256",
+    "active_catalog_sha256",
+    "raw_prompt_stored",
+    "authority_granted_by_router"
+  ],
+  "properties": {
+    "schema_version": {"const": "skill-sublation.routing-invocation-receipt.v1"},
+    "request_id": {"$ref": "#/$defs/opaque_id"},
+    "host_id": {"$ref": "#/$defs/canonical_id"},
+    "executing_agent_id": {"$ref": "#/$defs/canonical_id"},
+    "routing_mode": {"enum": ["legacy", "shadow", "user_selected", "host_selected"]},
+    "recommended_skill_id": {
+      "anyOf": [{"$ref": "#/$defs/canonical_id"}, {"type": "null"}]
+    },
+    "host_selected_skill_id": {"$ref": "#/$defs/canonical_id"},
+    "invoked_skill_id": {"$ref": "#/$defs/canonical_id"},
+    "invocation_status": {"enum": ["started", "completed", "failed", "cancelled"]},
+    "started_at": {"type": "string", "format": "date-time"},
+    "finished_at": {"type": ["string", "null"], "format": "date-time"},
+    "host_adapter_sha256": {"$ref": "#/$defs/sha256"},
+    "active_catalog_sha256": {"$ref": "#/$defs/sha256"},
+    "result_receipt_sha256": {
+      "anyOf": [{"$ref": "#/$defs/sha256"}, {"type": "null"}]
+    },
+    "raw_prompt_stored": {"const": false},
+    "authority_granted_by_router": {"const": false}
+  },
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "opaque_id": {"type": "string", "pattern": "^[A-Za-z0-9._:-]{1,128}$"},
+    "canonical_id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9._:-]{0,127}$"}
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {"invocation_status": {"const": "completed"}},
+        "required": ["invocation_status"]
+      },
+      "then": {
+        "properties": {
+          "finished_at": {"type": "string", "format": "date-time"},
+          "result_receipt_sha256": {"$ref": "#/$defs/sha256"}
+        },
+        "required": ["result_receipt_sha256"]
+      }
+    }
+  ]
+}

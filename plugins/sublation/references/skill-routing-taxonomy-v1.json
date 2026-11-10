@@ -1,0 +1,85 @@
+{
+  "schema_version": "skill-sublation.routing-taxonomy.v1",
+  "domains": [
+    {
+      "id": "legal",
+      "label": "法律",
+      "aliases": ["法律", "法务", "诉讼", "合同审查", "legal", "litigation"]
+    },
+    {
+      "id": "finance-investment",
+      "label": "金融与投资",
+      "aliases": ["金融", "投资", "证券", "估值", "财务", "finance", "investment"]
+    },
+    {
+      "id": "software-engineering",
+      "label": "软件工程",
+      "aliases": ["代码", "编程", "软件", "测试", "开发", "code", "software", "engineering"]
+    },
+    {
+      "id": "data-research",
+      "label": "数据与研究",
+      "aliases": ["数据分析", "研究", "检索", "调研", "data", "research", "analysis"]
+    },
+    {
+      "id": "office-documents",
+      "label": "办公文档",
+      "aliases": ["文档", "表格", "幻灯片", "排版", "word", "excel", "powerpoint", "document"]
+    },
+    {
+      "id": "writing-content",
+      "label": "写作与内容",
+      "aliases": ["写作", "文章", "润色", "文案", "内容", "writing", "article", "content"]
+    },
+    {
+      "id": "media-design",
+      "label": "媒体与设计",
+      "aliases": ["图片", "视觉", "音频", "视频", "设计", "image", "audio", "video", "design"]
+    },
+    {
+      "id": "automation-integration",
+      "label": "自动化与集成",
+      "aliases": ["自动化", "集成", "工作流", "定时", "automation", "integration", "workflow"]
+    },
+    {
+      "id": "meta-governance",
+      "label": "元能力与治理",
+      "aliases": ["技能治理", "扬弃", "候选晋升", "审计", "skill governance", "sublation", "promotion"]
+    },
+    {
+      "id": "general",
+      "label": "通用",
+      "aliases": ["通用任务", "general purpose"]
+    },
+    {
+      "id": "uncategorized",
+      "label": "待分类",
+      "aliases": []
+    }
+  ],
+  "capabilities": [
+    {"id": "research", "aliases": ["研究", "检索", "调研", "research", "search"]},
+    {"id": "drafting", "aliases": ["起草", "撰写", "生成文稿", "draft", "write"]},
+    {"id": "review", "aliases": ["审查", "复核", "评审", "review", "audit"]},
+    {"id": "extraction", "aliases": ["抽取", "提取", "解析", "extract", "parse"]},
+    {"id": "visualization", "aliases": ["可视化", "图表", "visualization", "chart"]},
+    {"id": "formatting", "aliases": ["排版", "格式化", "版式", "formatting", "layout"]},
+    {"id": "automation", "aliases": ["自动化", "批处理", "定时", "automation", "batch"]},
+    {"id": "validation", "aliases": ["验证", "校验", "测试", "validation", "test"]},
+    {"id": "transformation", "aliases": ["转换", "转化", "转换格式", "transform", "convert"]},
+    {"id": "publishing", "aliases": ["发布", "上传", "推送", "publish", "post"]},
+    {"id": "monitoring", "aliases": ["监控", "观察", "追踪", "monitor", "observe"]},
+    {"id": "orchestration", "aliases": ["编排", "协调", "路由", "orchestration", "routing"]},
+    {"id": "governance", "aliases": ["治理", "晋升", "回滚", "governance", "promotion", "rollback"]},
+    {"id": "coding", "aliases": ["编码", "代码实现", "coding", "implementation"]},
+    {"id": "testing", "aliases": ["单元测试", "回归测试", "冒烟", "unit test", "regression", "smoke"]}
+    ,{"id": "general-assistance", "aliases": []}
+  ],
+  "thresholds": {
+    "minimum_score": 5.0,
+    "ambiguous_margin": 2.0,
+    "cross_domain_ratio": 0.72,
+    "default_top_k": 5,
+    "max_composition": 3
+  }
+}

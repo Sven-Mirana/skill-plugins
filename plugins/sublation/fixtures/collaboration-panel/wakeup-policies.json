@@ -1,0 +1,70 @@
+{
+  "schema_version": "skill-sublation.agent-wakeup-policy.v1",
+  "binding_source": "project_local_panel_config",
+  "window_policy": {
+    "default_state": "closed",
+    "requires_explicit_user_arm": true,
+    "maximum_duration_seconds": 3600,
+    "maximum_quiet_cycles": 20,
+    "maximum_wakes": 20,
+    "drain_on_any_limit": true,
+    "close_requires_no_pending_intents": true,
+    "close_requires_no_active_lease": true
+  },
+  "retry_policy": {
+    "backoff_seconds": [60, 180, 600],
+    "max_attempts": 4,
+    "terminal_outcome": "terminal_hold"
+  },
+  "default_policy": {
+    "enabled": false,
+    "mode": "queue_only",
+    "cooldown_seconds": 60,
+    "hourly_limit": 6,
+    "timeout_seconds": 180,
+    "escalation_seat_id": "user",
+    "max_messages_per_wake": 1,
+    "silent_when_idle": true
+  },
+  "registered_adapters": [],
+  "pending_host_installs": [
+    {
+      "adapter_id": "claude-code-watcher-auto-v1",
+      "seat_id": "claude-code",
+      "kind": "watcher_auto",
+      "status": "pending_host_install"
+    },
+    {
+      "adapter_id": "hermes-auto-wakeup-v1",
+      "seat_id": "hermes",
+      "kind": "local_wakeup",
+      "status": "pending_host_install"
+    }
+  ],
+  "seat_policies": [
+    {
+      "seat_id": "claude-code",
+      "enabled": false,
+      "mode": "queue_only",
+      "adapter_id": null,
+      "cooldown_seconds": 60,
+      "hourly_limit": 6,
+      "timeout_seconds": 180,
+      "escalation_seat_id": "user",
+      "max_messages_per_wake": 1,
+      "silent_when_idle": true
+    },
+    {
+      "seat_id": "hermes",
+      "enabled": false,
+      "mode": "queue_only",
+      "adapter_id": null,
+      "cooldown_seconds": 60,
+      "hourly_limit": 6,
+      "timeout_seconds": 180,
+      "escalation_seat_id": "user",
+      "max_messages_per_wake": 1,
+      "silent_when_idle": true
+    }
+  ]
+}

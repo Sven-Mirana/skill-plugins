@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light dark">
+    <title>Sublation 多 Agent 协作面板</title>
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#main">跳到主要内容</a>
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">Sublation V5.0 · 项目本地</p>
+        <h1>多 Agent 协作面板</h1>
+        <p id="project-summary" class="muted">正在读取项目状态…</p>
+      </div>
+      <div class="topbar-actions">
+        <span class="privacy-chip">仅限 127.0.0.1</span>
+        <button id="theme-button" class="secondary-button" type="button">切换深浅色</button>
+      </div>
+    </header>
+
+    <main id="main" class="layout" tabindex="-1">
+      <section class="panel roster-panel" aria-labelledby="roster-title">
+        <div class="panel-heading">
+          <div>
+            <p class="section-kicker">席位</p>
+            <h2 id="roster-title">协作成员</h2>
+          </div>
+          <span id="seat-count" class="count-chip">—</span>
+        </div>
+        <p class="boundary-note">建席只建立本地队列，不代表 Agent 已在线、已读取或已同意。</p>
+        <div id="roster-list" class="roster-grid" aria-live="polite"></div>
+        <details id="managed-seats-box" class="management-box" hidden>
+          <summary id="managed-seat-summary">其余、隐藏或已停用席位</summary>
+          <div id="managed-seat-list" class="roster-grid managed-seat-list" aria-live="polite"></div>
+        </details>
+
+        <details class="management-box">
+          <summary>增加 Agent 席位</summary>
+          <form id="agent-form" class="stack-form">
+            <label>
+              Agent ID
+              <input id="agent-id" name="id" autocomplete="off" maxlength="64" pattern="[a-z0-9][a-z0-9._-]{0,63}" placeholder="例如 research-agent" required>
+            </label>
+            <label>
+              显示名称
+              <input id="agent-name" name="display_name" autocomplete="off" maxlength="64" placeholder="例如 研究复核员" required>
+            </label>
+            <label>
+              角色说明
+              <input id="agent-role" name="role_label" autocomplete="off" maxlength="64" value="协作 Agent" required>
+            </label>
+            <button type="submit">增加席位</button>
+          </form>
+        </details>
+      </section>
+
+      <section class="panel conversation-panel" aria-labelledby="messages-title">
+        <div class="panel-heading">
+          <div>
+            <p class="section-kicker">协调记录</p>
+            <h2 id="messages-title">消息</h2>
+          </div>
+          <button id="refresh-button" class="secondary-button" type="button">刷新</button>
+        </div>
+        <button id="load-more-button" class="load-more" type="button" hidden>再加载 120 条较早消息</button>
+        <ol id="message-list" class="message-list" aria-live="polite" aria-label="项目消息"></ol>
+        <form id="message-form" class="message-composer">
+          <label>
+            发送给
+            <select id="message-audience" name="audience" required></select>
+          </label>
+          <label class="wide-field">
+            消息正文
+            <textarea id="message-body" name="body" maxlength="20000" rows="3" placeholder="只写协调信息；授权、案件事实和敏感正文应留在原工作流。" required></textarea>
+          </label>
+          <button type="submit">以用户席发送</button>
+        </form>
+      </section>
+
+      <aside class="side-column">
+        <section class="panel wakeup-panel" aria-labelledby="wakeup-title">
+          <div class="panel-heading">
+            <div>
+              <p class="section-kicker">任务触发</p>
+              <h2 id="wakeup-title">受控唤醒意图（宿主未安装）</h2>
+            </div>
+            <span id="wakeup-window-status" class="count-chip" data-state="closed">已关闭</span>
+          </div>
+          <p class="boundary-note strong">建席不会自动开启唤醒。窗口已武装也不代表 Agent 在线；只有用户显式开窗、另行登记固定适配器并取得“已回写并验真”收据后，游标才会推进。</p>
+          <p id="wakeup-summary" class="muted">正在读取唤醒账本…</p>
+          <ul id="wakeup-seat-list" class="wakeup-seat-list" aria-live="polite"></ul>
+          <p class="wakeup-footnote">面板只展示发现、闸门与收据；不会安装 launchd/cron，也不会直接启动 Agent。</p>
+        </section>
+
+        <section class="panel routing-panel" aria-labelledby="routing-title">
+          <div class="panel-heading">
+            <div>
+              <p class="section-kicker">只读展示</p>
+              <h2 id="routing-title">Skill 分类与精准建议（Shadow）</h2>
+            </div>
+          </div>
+          <p class="boundary-note strong">固定分为分类画像、建议路由、宿主选择、实际调用四层；元数据“已审阅”不等于可调用，无可信签名宿主回执时只能显示“未调用”。</p>
+          <div id="routing-stages" class="routing-stages" aria-live="polite"></div>
+        </section>
+
+        <section class="panel task-panel" aria-labelledby="tasks-title">
+          <div class="panel-heading">
+            <div>
+              <p class="section-kicker">追加记录</p>
+              <h2 id="tasks-title">任务</h2>
+            </div>
+            <span id="task-count" class="count-chip">0</span>
+          </div>
+          <ul id="task-list" class="task-list"></ul>
+          <details class="management-box">
+            <summary>新增任务</summary>
+            <form id="task-form" class="stack-form">
+              <label>
+                任务标题
+                <input id="task-title" name="title" maxlength="256" required>
+              </label>
+              <label>
+                负责人
+                <select id="task-owner" name="owner" required></select>
+              </label>
+              <button type="submit">记录任务</button>
+            </form>
+          </details>
+        </section>
+      </aside>
+    </main>
+
+    <div id="notice" class="notice" role="status" aria-live="polite" hidden></div>
+    <script src="/app.js" defer></script>
+  </body>
+</html>

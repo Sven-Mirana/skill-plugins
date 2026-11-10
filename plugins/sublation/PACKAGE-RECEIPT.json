@@ -1,0 +1,12 @@
+{
+  "deterministic_zip_timestamp": "2026-08-25T00:00:00Z",
+  "external_upload_performed": false,
+  "license": "MIT",
+  "manifest_sha256": "sha256:a7f2760f8c5f19033515bf8271ef7c75081b2e30a54b298b6eab069a61002338",
+  "profile": "full-public",
+  "publication_or_review_status_claimed": false,
+  "schema_version": "skill-sublation.local-package-receipt.v1",
+  "source_logical_tree_sha256": "sha256:8276768668a9f88c182e0046fb9310b4a90b700a87bb21ef04136a0ece9dc9cb",
+  "state": "BUILT_LOCAL_NOT_UPLOADED",
+  "version": "5.0.0"
+}

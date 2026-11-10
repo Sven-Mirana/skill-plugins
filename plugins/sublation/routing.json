@@ -1,0 +1,30 @@
+{
+  "schema_version": "skill-sublation.routing-metadata.v1",
+  "skill": "skill-sublation",
+  "routing_metadata_version": 1,
+  "primary_domain": "meta-governance",
+  "capabilities": ["automation", "governance", "orchestration", "validation"],
+  "triggers": ["skill-sublation", "技能扬弃", "skill governance", "候选晋升", "晋升回滚"],
+  "negative_triggers": ["普通内容润色", "仅回答法律问题", "仅生成图片", "无需修改技能"],
+  "input_types": ["candidate_manifest", "governance_evidence", "user_prompt"],
+  "output_types": ["audit_report", "candidate_package", "routing_advice"],
+  "dependencies": [],
+  "risk_tier": "high",
+  "allowed_actions": ["candidate_write", "local_validation", "shadow_routing"],
+  "prohibited_actions": ["automatic_promotion", "silent_formal_write", "unauthorized_external_send"],
+  "clarify_when": ["正式目标根不明确", "用户未明确授权正式写入", "路由候选分数接近且影响执行边界"],
+  "fallback_mode": "legacy_catalog",
+  "classification": {
+    "method": "human_reviewed",
+    "status": "approved",
+    "evidence": [
+      "public-review-01-claude-code",
+      "public-review-02-hermes",
+      "public-review-03-hermes",
+      "public-review-04-codex",
+      "public-review-05-codex",
+      "public-review-06-hermes",
+      "public-review-07-claude-code"
+    ]
+  }
+}

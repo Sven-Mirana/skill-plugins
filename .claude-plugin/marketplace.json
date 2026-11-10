@@ -1,0 +1,13 @@
+{
+  "name": "sven-mirana-skill-plugins",
+  "owner": {
+    "name": "Sven-Mirana"
+  },
+  "plugins": [
+    {
+      "name": "sublation",
+      "source": "./plugins/sublation"
+    }
+  ],
+  "description": "Sven-Mirana 的私有 Claude Code 插件目录。"
+}
