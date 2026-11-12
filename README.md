@@ -24,4 +24,8 @@ claude plugin install sublation@sven-mirana-skill-plugins
 
 融资租赁公开范围为普通直租纠纷。
 
-本仓库收录 MIT 与 GPL-3.0-only 项目。第三方依赖按各自随包许可分发。
+## 许可证
+
+本仓库自行编写的发布目录、仓库级清单和说明文档采用 [AGPL-3.0-only](LICENSE)。
+
+`plugins/` 中的源码及 Releases 下载包各自适用随附的许可证和来源声明。六个项目的许可见 [版本清单](PACKAGES.json)，第三方依赖按各自随包许可分发。
